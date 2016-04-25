@@ -7,7 +7,7 @@ public class Solution {
         } else if (num % 10 != 4 && num % 10 != 6 && num != 1) {
             return false;
         } else {
-            return Math.pow(2,30) % num == 0;
+            return Math.pow(2, 30) % num == 0;
         }
     }
 }
