@@ -1,4 +1,5 @@
 // Write a function to find the longest common prefix string amongst an array of strings.
+// using master theorem, T(n) = 2T(n/2) + constant - > T(n) = n
 public class Solution {
     public String longestCommonPrefix(String[] strs) {
         if (strs.length == 0) return "";
