@@ -18,6 +18,8 @@ public class Solution {
       if (cur.size() == nums.length){
         res.add(new ArrayList<Integer>(nums));
       }
-      else 
+      else{
+        
+      }
     }
 }
