@@ -14,8 +14,33 @@
 // [7]
 // [2, 2, 3]
 public class Solution {
+    List<List<Integer>> res;
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
       Arrays.sort(candidates);
-      List<List<Integer>> res = new ArrayList<List<Integer>>();
+      res = new ArrayList<List<Integer>>();
+      for (int i = 0; i < candidates.length; i = increase(candidates, i)) {
+        help(i, candidates, new ArrayList<Integer>(), target);
+      }
+      return res;
+    }
+    private void help(int start, int []nums, ArrayList<Integer> cur, int target){
+
+      if (target == 0){
+        res.add(new ArrayList<Integer>(cur));
+      }
+      else if (target < 0) return;
+      else{
+          for (int i = start; i < nums.length; i = increase(candidate,i)){
+            cur.add(nums[i]);
+            help(i, nums, cur, target - nums[i]);
+            cur.remove(cur.size()-1);
+          }
+      }
+    }
+
+    private int increase(int []nums, int i){
+      int target = nums[i];
+      while(i < nums.length && nums[i] == target) i++;
+      return i;
     }
 }
