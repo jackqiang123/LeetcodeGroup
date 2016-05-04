@@ -19,7 +19,15 @@ public class Solution {
         res.add(new ArrayList<Integer>(nums));
       }
       else{
-        
+        for(int i = 0; i < visit.length; i++){
+          if (!visit[i]){
+            visit[i] = true;
+            cur.add(visit[i]);
+            backtrack(nums, cur);
+            cur.remove(cur.size()-1);
+            visit[i] = false;
+          }
+        }
       }
     }
 }
