@@ -23,13 +23,23 @@ public class Solution {
       boolean [] used = new boolean[10];
       StringBuilder res = new StringBuilder();
       for (int i = n; i >= 1; i--){
-        int numofPerm = used[i - 1];
-        res.append(findNextNumber(used));
+        int numofPerm = perm[i - 1];
+        res.append(findNextNumber(used, n/numofPerm));
+        n = n%numofPerm;
       }
       return res.toString();
     }
 
-    private int findNextNumber(){
-      
+    private int findNextNumber(boolean[]visit, int rank){
+      int count = 0;
+      for (int i = 1; i <= 9; i++){
+        if (visit[i]) continue;
+        if (rank == count) {
+          visit[i] = true;
+          return i;
+        }
+        else count++;
+      }
+      return -1;
     }
 }
