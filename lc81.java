@@ -1,13 +1,11 @@
-// Suppose a sorted array is rotated at some pivot unknown to you beforehand.
+// Follow up for "Search in Rotated Sorted Array":
+// What if duplicates are allowed?
 //
-// (i.e., 0 1 2 4 5 6 7 might become 4 5 6 7 0 1 2).
+// Would this affect the run-time complexity? How and why?
 //
-// You are given a target value to search. If found in the array return its index, otherwise return -1.
-//
-// You may assume no duplicate exists in the array.
-
+// Write a function to determine if a given target is in the array.
 public class Solution {
-    public int search(int[] nums, int target) {
+    public boolean search(int[] nums, int target) {
       int lo = 0;
       int hi = nums.length - 1;
       while(lo < hi){
@@ -18,11 +16,12 @@ public class Solution {
             lo = mid + 1;
           }else hi = mid;
         }
-        else {
+        else if (nums[mid] > nums[hi]){
           if (nums[mid] > target && nums[lo] <= target)
             hi = mid;
           else lo = mid + 1;
         }
+        else hi--;
       }
       return nums[lo] == target ? lo : - 1;
     }
