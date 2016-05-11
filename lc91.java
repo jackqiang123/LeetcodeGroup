@@ -14,24 +14,26 @@
 public class Solution {
     public int numDecodings(String s) {
       int len = s.length();
-      int []dp = new int[len];
+      if (len == 0) return 0;
+      int []dp = new int[len];//the interprating way at position i
+      dp[0] = s.charAt(0) != '0' ? 1:0;
+      if(dp[0] == 0) return 0;
       int i = 1;
-      dp[0] = 1;
       while(i<len){
         char c = s.charAt(i);
-        if (c == '0'){
-          if (i == 0 || (s.charAt(i-1) != '1' && s.charAt(i-1) != '2'))
-            return 0;
-          else if (i == 1)
-            dp[i] = 1;
-          else dp[i] = dp[i-2];
+        if(c == '0'){
+           if (s.charAt(i-1) == '1' || s.charAt(i-1) == '2'){
+             dp[i] = i-2 >= 0 ? dp[i-2] : 1;
+           }
+           else return 0;
         }
-        else if (i <= '6' && i >= '1'){
-
+        else if (s.charAt(i-1) == '1' || (s.charAt(i-1) == '2' && c <= '6')){
+             dp[i] = dp[i-1] + (i-2>=0?dp[i-2]:1);
         }
-        else { // 9 >= i >=7 
-
+        else {
+            dp[i] = dp[i-1];
         }
+        i++;
       }
       return dp[dp.length - 1];
     }

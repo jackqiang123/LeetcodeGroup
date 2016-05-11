@@ -13,7 +13,30 @@
  * }
  */
 public class Solution {
+    TreeNode first;
+    TreeNode second;
+    TreeNode last;
     public void recoverTree(TreeNode root) {
-
+      dfs(root);
+      int t = first.val;
+      first.val = second.val;
+      second.val = t;
+    }
+    private void dfs(TreeNode root){
+      if (root == null) return;
+      dfs(root.left);
+      if (last != null){
+        if (root.val < last.val){
+          if (first == null){
+            first = last;
+            second = root;
+          }
+          else {
+            second = root;
+          }
+        }
+      }
+      last = root;
+      dfs(root.right);
     }
 }

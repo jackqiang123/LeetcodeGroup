@@ -19,6 +19,26 @@
  */
 public class Solution {
     public ListNode reverseBetween(ListNode head, int m, int n) {
-
+      ListNode dummy = new ListNode(0);
+      ListNode res = dummy;
+      ListNode p1 = dummy;
+      ListNode p2 = dummy;
+      int index = 1;
+      if (m == n) return head;
+      while(index != m){
+        index++;
+        p1 = p1.next;
+      }
+      p2 = p1.next;
+      ListNode tail = p2;
+      while(index <= n){
+        index++;
+        ListNode temp = p2.next;
+        p2.next = p1.next;
+        p1.next = p2;
+        p2 = temp;
+      }
+      tail.next = p2;
+      return res.next;
     }
 }

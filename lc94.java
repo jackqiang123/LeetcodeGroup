@@ -36,8 +36,13 @@ public class Solution {
       while(!stack.isEmpty()){
         TreeNode cur = stack.pop();
         res.add(cur.val);
+        cur = cur.right;
+        while(cur != null)
+        {
+            stack.push(cur);
+            cur = cur.left;
+        }        
       }
-
       return res;
     }
 }
