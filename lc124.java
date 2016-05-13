@@ -21,12 +21,18 @@
  * }
  */
 public class Solution {
+    private int sum;
     public int maxPathSum(TreeNode root) {
-      int leftPathsum = depth(root.left)
-      int rightPathsum = depth(root.right);
-      return 1 + Math.max(leftPathsum, 0) + Math.max(rightPathsum, 0);
+      sum = Integer.MIN_VALUE;
+      int leftPathsum = partialSum(root.left)
+      int rightPathsum = partialSum(root.right);
+      return Math.max(sum, root.val + Math.max(leftPathsum, 0) + Math.max(rightPathsum, 0));
     }
-    private int depth(TreeNode node){
-      
+    private int partialSum(TreeNode node){
+      if(node == null) return 0;
+      int left = Math.max(0, partialSum(node.left));
+      int right = Math.max(0, partialSum(node.right));
+      sum = Math.max(sum, node.val + left + right);
+      return node.val + Math.max(left, right);
     }
 }

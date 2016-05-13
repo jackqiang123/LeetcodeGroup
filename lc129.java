@@ -24,7 +24,21 @@
  * }
  */
 public class Solution {
+    int sum = 0;
     public int sumNumbers(TreeNode root) {
+      if (root == null) return 0;
+      dfs(root, 0);
+      return sum;
+    }
 
+    private void dfs(TreeNode root, int cur){
+      if (root == null) return;
+      if (root.left == null && root.right == null){
+        sum += (cur*10 + root.val);
+      }
+      else{
+        dfs(root.left, cur*10 + root.val);
+        dfs(root.right, cur*10 + root.val);
+      }
     }
 }
