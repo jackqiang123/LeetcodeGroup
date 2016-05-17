@@ -16,6 +16,18 @@
 // 5 2
 //   / \
 //  3 1
-
-public TreeNode UpsideDownBinaryTree(TreeNode root) {  
+public class Solution{
+  public TreeNode UpsideDownBinaryTree(TreeNode root) {
+    if (root == null || (root.left == null && root.right == null)) return root;
+    TreeNode cur = root;
+    while(cur.left != null && cur.left.left != null){
+      cur = cur.left;
+    }
+    TreeNode newRoot = cur.left;
+    newRoot.left = cur.right;
+    cur.left = null;
+    cur.right = null;
+    newRoot.right = UpsideDownBinaryTree(root);
+    return newRoot;
+  }
 }

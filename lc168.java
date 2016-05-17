@@ -13,6 +13,14 @@
 // Special thanks to @ifanchu for adding this problem and creating all test cases.
 public class Solution {
     public String convertToTitle(int n) {
-
+      StringBuilder sb = new StringBuilder();
+      while(n != 0){
+        n--;
+        int cur = n%26;
+        char c = 'A' + cur;
+        sb.insert(0, c);
+        n = n/26;
+      }
+      return sb.toString();
     }
 }
