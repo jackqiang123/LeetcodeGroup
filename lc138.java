@@ -10,7 +10,17 @@
  * };
  */
 public class Solution {
+    private Map<RandomListNode, RandomListNode> map;
     public RandomListNode copyRandomList(RandomListNode head) {
-
+      map = new HashMap<RandomListNode, RandomListNode>();
+      return helper(head);
+    }
+    private RandomListNode helper(RandomListNode head){
+      if (head == null) return null;
+      if (map.get(head) != null) return map.get(head);
+      RandomListNode newHead = new RandomListNode(head.val);
+      newHead.next = helper(head.next);
+      newHead.random = helper(head.random);
+      return newHead;
     }
 }
