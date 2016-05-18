@@ -32,10 +32,28 @@ public class Solution {
       res = 0;
       int h = grid.length;
       int w = grid[0].length;
-      visit = new int[h][w];
+      visit = new boolean[h][w];
       for (int i = 0; i < h; i++){
         for (int j = 0; j < w; j++)
-          dfs(grid, i, j);
+        {
+          if (grid[i][j] == '1' && !visit[i][j]) {
+            res++;
+            dfs(grid, i, j);
+          }
+        }
       }
+      return res;
+    }
+
+    private void dfs(char[][]grid, int i, int j){
+      if (i < 0 || i >= grid.length || j < 0 || j >= grid[0].length)
+        return;
+      if (visit[i][j] || grid[i][j] == '0')
+        return;
+      visit[i][j] = true;
+      dfs(grid, i-1,j);
+      dfs(grid, i+1,j);
+      dfs(grid, i,j-1);
+      dfs(grid, i,j+1);
     }
 }
