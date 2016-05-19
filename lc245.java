@@ -12,4 +12,8 @@
 //
 // Note:
 // You may assume word1 and word2 are both in the list.
-public int shortestWordDistance(String[] words, String word1, String word2) {
+public class Solution {
+    public int shortestDistance(String[] words, String word1, String word2) {
+
+    }
+  }

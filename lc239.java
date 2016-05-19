@@ -1,4 +1,5 @@
-// Given an array nums, there is a sliding window of size k which is moving from the very left of the array to the very right. You can only see the k numbers in the window. Each time the sliding window moves right by one position.
+// Given an array nums, there is a sliding window of size k which is moving from the very left of the array to the very right.
+// You can only see the k numbers in the window. Each time the sliding window moves right by one position.
 //
 // For example,
 // Given nums = [1,3,-1,-3,5,3,6,7], and k = 3.
@@ -15,6 +16,25 @@
 
 public class Solution {
     public int[] maxSlidingWindow(int[] nums, int k) {
-
+      int len = nums.length;
+      k = Math.min(len, k);
+      int []res = new int[len - k + 1];
+      int index = 0;
+      PriorityQueue<Integer> pq = new PriorityQueue<Integer>(k, new Comparator<Integer>(){
+        public int compare(Integer i1, Integer i2){
+          return i2-i1;
+        }
+      });
+      int i = 0;
+      while(index < res.length){
+        while (pq.size() < k){
+          pq.add(nums[i++]);
+        }
+        res[index++] = pq.peek();
+        pq.remove(nums[i - k]);
+        if (i < len)
+          pq.add(nums[i++]);
+      }
+      return res;
     }
 }

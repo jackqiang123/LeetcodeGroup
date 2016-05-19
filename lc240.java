@@ -18,6 +18,16 @@
 // Given target = 20, return false.
 public class Solution {
     public boolean searchMatrix(int[][] matrix, int target) {
-
+      int h = matrix.length;
+      int w  = matrix[0].length;
+      int i = 0;
+      int j = w - 1;
+      while(i < h && j >= 0){
+        int base = matrix[i][j];
+        if (base == target) return true;
+        if (base > target) j--;
+        else i++;
+      }
+      return false;
     }
 }

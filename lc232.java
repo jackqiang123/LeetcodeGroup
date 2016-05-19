@@ -10,22 +10,26 @@
 // You may assume that all operations are valid (for example, no pop or peek operations will be called on an empty queue).
 class MyQueue {
     // Push element x to the back of queue.
+    Stack<Integer> stack1 = new Stack();
+    Stack<Integer> stack2 = new Stack();
     public void push(int x) {
-
+      stack2.push(x);
     }
 
     // Removes the element from in front of queue.
     public void pop() {
-
+      peek();
+      return stack1.pop();
     }
 
     // Get the front element.
     public int peek() {
-
+      while(!stack2.isEmpty())
+        stack1.push(stack2.pop());
     }
 
     // Return whether the queue is empty.
     public boolean empty() {
-
+      return stack1.isEmpty() && stack2.isEmpty();
     }
 }

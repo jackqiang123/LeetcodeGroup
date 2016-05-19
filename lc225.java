@@ -15,22 +15,32 @@
 // The class name of the Java function had been updated to MyStack instead of Stack.
 class MyStack {
     // Push element x onto stack.
-    public void push(int x) {
+    Queue<Integer> queue = new LinkedList();
 
+    public void push(int x) {
+      queue.add(x);
     }
 
     // Removes the element on top of the stack.
     public void pop() {
-
+        int size = queue.size();
+        for (int i = 0; i < size - 1; i++)
+          queue.add(queue.remove());
+        queue.remove();
     }
 
     // Get the top element.
     public int top() {
-
+      int size = queue.size();
+      for (int i = 0; i < size - 1; i++)
+        queue.add(queue.remove());
+      int res = queue.peek();
+      queue.add(queue.remove())
+      return res;
     }
 
     // Return whether the stack is empty.
     public boolean empty() {
-
+      return queue.isEmpty();
     }
 }

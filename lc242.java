@@ -11,6 +11,17 @@
 // What if the inputs contain unicode characters? How would you adapt your solution to such case?
 public class Solution {
     public boolean isAnagram(String s, String t) {
-
+      int slen = s.length();
+      if (slen != t.length()) return false;
+      int [] charArray = new char[26];
+      for (int i = 0; i < slen; i++){
+        charArray[s.charAt(i)-'a']++;
+        charArray[t.charAt(i)-'a']--;
+      }
+      for (int i : charArray)
+      {
+        if (i != 0) return false;
+      }
+      return true;
     }
 }
