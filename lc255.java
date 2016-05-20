@@ -1,8 +1,7 @@
-// Given an array of meeting time intervals consisting of start and end times
-// [[s1,e1],[s2,e2],...] (si < ei), find the minimum number of conference rooms required.
-public class Solution{
-  public int findMinRoom(Interval[] intervals){
-    Arrays.sort();
-
-  }
-}
+// Given an array of numbers, verify whether it is the correct preorder traversal sequence of a binary search tree.
+//
+// You may assume each number in the sequence is unique.
+//
+// Follow up: Could you do it using only constant space complexity?
+public class Solution {
+    public boolean verifyPreorder(int[] preorder) {

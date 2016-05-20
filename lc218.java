@@ -16,7 +16,48 @@
 // The output list must be sorted by the x position.
 // There must be no consecutive horizontal lines of equal height in the output skyline. For instance, [...[2 3], [4 5], [7 5], [11 5], [12 7]...] is not acceptable; the three lines of height 5 should be merged into one in the final output as such: [...[2 3], [4 5], [12 7], ...]
 public class Solution {
-    public List<int[]> getSkyline(int[][] buildings) {
-
+    class Cell{
+      int x; int y;
+      public Cell(int x, int y){
+        this.x = x; this.y = y;
+      }
+    }
+    public List<int[]> getSkyline(int[][] b) {
+      List<int[]> res = new ArrayList<int[]>();
+      List<Cell> index = new ArrayList();
+      for (int i = 0; i < b.length; i++){
+        index.add(new Cell(b[i][0], b[i][2]));
+        index.add(new Cell(b[i][1], -b[i][2]));
+      }
+      Collections.sort(index, new Comparator<Cell>(){
+        public int compare(Cell c1, Cell c2){
+          if (c1.x != c2.x)
+            return c1.x - c2.x;
+          return c2.y - c1.y;
+        }
+      });
+      if (index.size() == 0) return res;
+      PriorityQueue<Integer> pq = new PriorityQueue(index.size(), new Comparator<Integer>(){
+        public int compare(Integer i1, Integer i2){
+          return i2 - i1;
+        }
+      });
+      int h = 0;
+      for (int i = 0; i < index.size(); i++){
+        Cell cur = index.get(i);
+        if (cur.y > 0){
+          pq.add(cur.y);
+        }
+        else {
+          pq.remove(-cur.y);
+        }
+        if (pq.isEmpty() || h != pq.peek())
+        {
+          h = pq.isEmpty() ? 0 : pq.peek();
+          int [] temp = {cur.x, h};
+          res.add(temp);
+        }
+      }
+      return res;
     }
 }

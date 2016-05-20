@@ -1,12 +1,35 @@
-// Given a binary tree, count the number of uni-value subtrees.
+// Given a string, we can "shift" each of its letter to its successive letter, for example: "abc" -> "bcd". We can keep "shifting" which forms the sequence:
 //
-// A Uni-value subtree means all nodes of the subtree have the same value.
+// "abc" -> "bcd" -> ... -> "xyz"
+// Given a list of strings which contains only lowercase alphabets, group all strings that belong to the same shifting sequence.
 //
-// For example:
-// Given binary tree,
-//               5
-//              / \
-//             1   5
-//            / \   \
-//           5   5   5
-// return 4.
+// For example, given: ["abc", "bcd", "acef", "xyz", "az", "ba", "a", "z"],
+// Return:
+//
+// [
+//   ["abc","bcd","xyz"],
+//   ["az","ba"],
+//   ["acef"],
+//   ["a","z"]
+// ]
+// Note: For the return value, each inner list's elements must follow the lexicographic order.
+
+public class Solution{
+    public List<List<String>> groupStrings(String[] strings) {
+      List<List<String>> res = new ArrayList<List<String>>();
+      Map<String, List<String>> map = new HashMap();
+      for (String s : strings){
+        String key = getPattern(s);
+        if (map.get(key) == null){
+          map.put(key, new ArrayList());
+        }
+        map.get(key).add(s);
+      }
+      for (String key : map.keySet()){
+        List<String> cur = map.get(key);
+        Arrays.sort(cur);
+        res.add(cur);
+      }
+      return res;
+    }
+}

@@ -14,17 +14,34 @@
 // Note:
 // You may assume that word1 does not equal to word2, and word1 and word2 are both in the list.
 public class Solution {
+    Map<String, List<Integer>> map;
     public int shortestDistance(String[] words, String word1, String word2) {
-      int len = words.length;
-      int best = len;
-      int i = 0; int j = 0;
-      while(i < len && j < len){
-        if (!words[i].equals(word1) && !words[i].equals(word2)){
+      if (map == null) {
+          map = new HashMap();
+        for (int i = 0; i < words.length; i++){
+          if (map.get(words[i]) == null){
+            List<Integer> index = new ArrayList();
+            index.add(i);
+            map.put(words[i], i);
+          }
+          else map.get(words[i]).add(i);
+        }
+      }
+      List<Integer> list1 = map.get(word1);
+      List<Integer> list2 = map.get(word2);
+      int best = 0;
+      int i = 0;
+      int j = 0;
+      best = Math.abs(list1.get(0) - list2.get(0));
+      while(i < list1.size() && j < list2.size()){
+        if (list1.get(i) < list2.get(j)){
           i++;
         }
         else{
-
+          j++;
         }
+        if (i < list1.size() && j < list2.size())
+          best = Math.min(best, Math.abs(list1.get(i) - list2.get(j)));
       }
       return best;
     }

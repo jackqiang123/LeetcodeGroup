@@ -10,12 +10,26 @@ public class Solution {
       int len = words.length;
       int best = len;
       int i = 0; int j = 0;
+      while(i < len && !words[i].equals(word1))
+        i++;
+      while(j < len && !words[j].equals(word2))
+        j++;
+      best = Math.abs(i - j);
+      i++;
+      j++;
       while(i < len && j < len){
-        if (!words[i].equals(word1) && !words[i].equals(word2)){
-          i++;
+        if (i < j){
+          while(i < len && !words[i].equals(word1)){
+            i++;
+          }
         }
-        else{
-
+        else {
+          while(j < len && !words[j].equals(word2)){
+            j++;
+          }
+        }
+        if (i < len && j < len){
+          best = Math.min(best, Math.abs(i-j));
         }
       }
       return best;
