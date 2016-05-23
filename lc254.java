@@ -41,3 +41,36 @@
 // ]
 public class Solution {
     public List<List<Integer>> getFactors(int n) {
+      List<List<Integer>> res = new ArrayList<List<Integer>>();
+      if (n <= 2) return res;
+      for (int i = 2; i < n; i++){
+        if (n%i == 0){
+          List<List<Integer>> curRes = helper(i, n/i);
+          for (List<Integer> cur : curRes){
+            cur.add(0, i);
+            res.add(cur);
+          }
+        }
+      }
+      return res;
+    }
+
+    private List<List<Integer>> helper(int lowerBound, int number){
+      List<List<Integer>> res = new ArrayList<List<Integer>>();
+      if (lowerBound > number) return res;
+      List<Integer> self = new ArrayList<Integer>();
+      self.add(number);
+      res.add(self);
+      for (int i = lowerBound; i < number; i++)
+      {
+        if (number%i == 0){
+          List<List<Integer>> cur = helper(i, number/i);
+          for (List<Integer> list : cur){
+            list.add(0, i);
+            res.add(list);
+          }
+        }
+      }
+      return res;
+    }
+  }

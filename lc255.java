@@ -23,4 +23,18 @@ public class Solution {
       }
       return helper(nums, start + 1, rightIndex - 1) && helper(nums, rightIndex, end);
     }
+
+    public boolean verifyPreorderUsingStack(int []preorder){
+      Stack<Integer> stack = new Stack();
+      int low = Integer.MIN_VALUE;
+      for (int i : preorder){
+        if (!stack.isEmpty() && i < low)
+          return false;
+        while(!stack.isEmpty() && stack.peek() < i){
+          low = stack.pop();
+        }
+        stack.push(i);
+      }
+      return true;
+    }
   }
