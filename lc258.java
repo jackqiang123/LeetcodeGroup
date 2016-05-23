@@ -17,6 +17,7 @@
 // How do they occur, periodically or randomly?
 public class Solution {
     public int addDigits(int num) {
-      
+      // check num from 1 to 20, we find it appears in period 9
+      return (num-1)%9 + 1;
     }
 }
