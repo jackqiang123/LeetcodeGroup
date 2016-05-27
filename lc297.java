@@ -26,12 +26,62 @@ public class Codec {
 
     // Encodes a tree to a single string.
     public String serialize(TreeNode root) {
-
+      StringBuilder res = new StringBuilder();
+      Queue<TreeNode> queue = new LinkedList();
+      if (root == null) {res.append("#");return res.toString();}
+      queue.add(root);res.append(root.val).append(',');
+      while(!queue.isEmpty()){
+        TreeNode cur = queue.remove();
+          if (cur.left != null){
+            queue.add(cur.left);
+            res.append(cur.left.val).append(',');
+          }
+          else{
+            res.append('#').append(',');
+          }
+          if(cur.right != null) {
+            queue.add(cur.right);
+            res.append(cur.right.val).append(',');
+          }
+          else{
+            res.append('#').append(',');
+          }
+      }
+      res.deleteCharAt(res.length() - 1);
+      return res.toString();
     }
 
     // Decodes your encoded data to tree.
-    public TreeNode deserialize(String data) {
+    public TreeNode deserialize(String treedata) {
+      if (treedata == null || treedata.length() == 0) return null;
+      String [] data = treedata.split(",");
+      if (data[0].equals("#")) return null;
+      TreeNode root = new TreeNode(Integer.parseInt(data[0]));
+      Queue<TreeNode> queue = new LinkedList();
+      queue.add(root);
+      int index = 1;
+      while(queue.isEmpty() == false && index < data.length){
+        TreeNode cur = queue.remove();
+        String left = data[index++];
+        String right = data[index++];
 
+        if (left.equals("#")){
+          cur.left = null;
+        }
+        else {
+          cur.left = new TreeNode(Integer.parseInt(left));
+          queue.add(cur.left);
+        }
+
+        if (right.equals("#")){
+          cur.right = null;
+        }
+        else {
+          cur.right = new TreeNode(Integer.parseInt(right));
+            queue.add(cur.right);
+        }
+      }
+      return root;
     }
 }
 

@@ -16,6 +16,49 @@
 
 public class Solution {
     public void gameOfLife(int[][] board) {
+      int h = board.length;
+      int w = board[0].length;
+      for (int i = 0; i < h; i++){
+        for (int j = 0; j < w; j++){
+          int count = findnb(board, i, j);
+          if (board[i][j] == 1){
+            if (count < 2){
+              board[i][j] = 10;
+            }
+            else if (count == 2 || count == 3){
+              board[i][j] = 11;
+            }
+            else {
+              board[i][j] = 10;
+            }
+          }
+          else {
+            if (count == 3){
+              board[i][j] = 12
+            }
+          }
+        }
+      }
 
+      for (int i = 0; i < h; i++){
+        for (int j = 0; j < w; j++){
+          if (board[i][j] == 11 || board[i][j] == 12)
+            board[i][j] = 1;
+          else board[i][j] = 0;
+        }
+      }
+    }
+
+    private int findnb(int [][]board, int i, int j){
+      return check(board, i - 1, j) + check(board, i + 1, j) + check(board, i, j-1) + check(board, i, j+1);
+    }
+
+    private int check(int [][]board, int i, int j){
+      int h = board.length;
+      int w = board[0].length;
+      if (i < 0 || i >= h || j < 0 || j >= w) return 0;
+      if (board[i][j] == 1 || board[i][j] == 10 || board[i][j] == 11)
+        return 1;
+      return 0;
     }
 }

@@ -19,6 +19,21 @@
 // You may assume that the secret number and your friend's guess only contain digits, and their lengths are always equal.
 public class Solution {
     public String getHint(String secret, String guess) {
-
+      int A = 0;
+      int B = 0;
+      int [] count = new int[10];
+      for (int i = 0; i < secret.length(); i++){
+        if (secret.charAt(i) == guess.charAt(i)) A++;
+        else{
+          count[secret.charAt(i) - '0']++;
+        }
+      }
+      for (int i = 0; i < secret.length(); i++){
+        if (count[guess.charAt(i) - '0']>0 && secret.charAt(i) != guess.charAt(i)){
+          count[guess.charAt(i) - '0']--;
+          B++;
+        }
+      }
+      return A + "A" + B +"B";
     }
 }

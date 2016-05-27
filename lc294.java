@@ -9,6 +9,28 @@
 // Follow up:
 // Derive your algorithm's runtime complexity.
 
-class Solution {
-2 public:
-3     bool canWin(string s) {
+public class Solution {
+ public boolean canWin(String s) {
+  List<String> res = next(s);
+  if (res.size() == 0) return false;
+  for (String n : res){
+    if (!canWin(n)) return true;
+  }
+  return false;
+ }
+
+ private List<String> next(String s) {
+   List<String> res = new ArrayList<String>();
+   char []array = s.toCharArray();
+   for (int i = 1; i < array.length; i++){
+     if (array[i] == '+' && array[i-1] == '+'){
+       array[i] = '-';
+       array[i-1] = '-';
+       res.add(String.valueOf(array));
+       array[i] = '+';
+       array[i-1] = '+';
+     }
+   }
+   return res;
+ }
+}
