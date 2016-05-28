@@ -14,18 +14,18 @@
  */
 public class Solution {
     public List<Interval> merge(List<Interval> intervals) {
-      Arrays.sort(intervals. new Comparator<Interval>(){
+      Collections.sort(intervals. new Comparator<Interval>(){
         public int compare(Interval i1, Interval i2){
           return i1.start - i2.start;
         }
       });
-      List<Interval> res = new ArrayList<Inteval>();
+      List<Interval> res = new ArrayList<Interval>();
 
       for (Interval curInt : intervals){
         if (res.size() == 0) res.add(curInt);
         else{
           Interval lastInt = res.get(res.size() - 1);
-          if (lastInt.end > curInt.start) res.add(curInt);
+          if (lastInt.end < curInt.start) res.add(curInt);
           else
             lastInt.end = Math.max(lastInt.end, curInt.end);
         }

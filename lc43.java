@@ -7,8 +7,8 @@
 //     You should NOT use internal library such as BigInteger.
 public class Solution {
     public String multiply(String num1, String num2) {
-      int len1 = num1.length;
-      int len2 = num2.length;
+      int len1 = num1.length();
+      int len2 = num2.length();
       int [] res = new int[len1 + len2];
       for (int i = len1 - 1; i >= 0; i--){
         int c = (int)(num1.charAt(i) - '0');
