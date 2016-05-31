@@ -42,6 +42,34 @@
 // (2) The height of a rooted tree is the number of edges on the longest downward path between the root and a leaf.
 public class Solution {
     public List<Integer> findMinHeightTrees(int n, int[][] edges) {
-
+      if (n == 1) return Collections.singletonList(0);
+      Map<Integer, Set<Integer>> adj = new HashMap();
+      for (int i = 0; i < edges.length; i++){
+        int u = edges[i][0];
+        int v = edges[i][1];
+        if (adj.get(u) == null)    adj.put(u, new HashSet());
+        if (adj.get(v) == null)    adj.put(v, new HashSet());
+        adj.get(u).add(v);
+        adj.get(v).add(u);
+      }
+      Queue<Integer> queue = new LinkedList();
+      for (int i : adj.keySet()){
+        if (adj.get(i).size() == 1)   queue.add(i);
+      }
+      List<Integer> res = new ArrayList();
+      while(!queue.isEmpty()){
+        res = new ArrayList();
+        int qsize = queue.size();
+        for (int i = 0; i < qsize; i++){
+          int cur = queue.remove();
+          res.add(cur);
+          for (int nb : adj.get(cur)){
+            adj.get(nb).remove(cur);
+            if (adj.get(nb).size() == 1)
+              queue.add(nb);
+          }
+        }
+      }
+      return res;
     }
-}
+  }

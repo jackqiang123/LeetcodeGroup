@@ -43,5 +43,41 @@
 //   [20],
 //   [7]
 // ]
-
-    public List<List<Integer>> verticalOrder(TreeNode root) {    
+public class Solution{
+    class PositionTreeNode{
+      TreeNode node;
+      int col; // location of this node
+      public PositionTreeNode(TreeNode node, int col){
+        this.node = node;
+        this.col = col;
+      }
+    }
+    public List<List<Integer>> verticalOrder(TreeNode root) {
+      List<List<Integer>> res = new ArrayList();
+      if (root == null) return res;
+      Queue<PositionTreeNode> queue = new LinkedList();
+      Map<Integer, List<Integer>> map = new HashMap();
+      queue.add(new PositionTreeNode(root, 0));
+      queue.add(null);
+      while(!queue.isEmpty()){
+        PositionTreeNode cur = queue.remove();
+        if (cur != null){
+          int col = cur.col;
+          TreeNode curNode = cur.node;
+          if (map.get(col) == null) map.put(col, new ArrayList<Integer>());
+          map.get(col).add(curNode.val);
+          if (curNode.left != null){
+            queue.add(new PositionTreeNode(curNode.left, cur.col - 1));
+          }
+          if (curNode.right != null){
+            queue.add(new PositionTreeNode(curNode.right, cur.col + 1));
+          }
+        }
+        else {
+          if (queue.isEmpty()) return res;
+          queue.add(null);
+        }
+      }
+      return res;
+    }
+  }

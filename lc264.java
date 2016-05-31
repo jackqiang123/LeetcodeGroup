@@ -16,20 +16,24 @@
 
 public class Solution {
     public int nthUglyNumber(int n) {
-      PriorityQueue<Integer> q2 = new PriorityQueue();
-      PriorityQueue<Integer> q3 = new PriorityQueue();
-      PriorityQueue<Integer> q5 = new PriorityQueue();
-      lastValue = 1;
-      for (int i = 1; i <= n; i++){
-        q2.add(2*lastValue);
-        q3.add(3*lastValue);
-        q5.add(5*lastValue);
+      Queue<Integer> q2 = new LinkedList();
+      Queue<Integer> q3 = new LinkedList();
+      Queue<Integer> q5 = new LinkedList();
+      int lastValue = 1;
+      for (int i = 1; i <= n - 1; i++){
+          if (Integer.MAX_VALUE/2 > lastValue)
+             q2.add(2*lastValue);
+          if (Integer.MAX_VALUE/3 > lastValue)
+               q3.add(3*lastValue);
+          if (Integer.MAX_VALUE/5 > lastValue)
+               q5.add(5*lastValue);
         lastValue = Math.min(q2.peek(), Math.min(q3.peek(), q5.peek()));
         if (lastValue == q2.peek())
           q2.remove();
-        else if (lastValue == q3.peek())
+        if (lastValue == q3.peek())
           q3.remove();
-        else q5.remove();
+        if (lastValue == q5.peek())
+          q5.remove();
       }
       return lastValue;
     }
