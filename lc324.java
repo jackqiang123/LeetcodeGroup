@@ -12,6 +12,18 @@
 
 public class Solution {
     public void wiggleSort(int[] nums) {
-
+      Arrays.sort(nums);
+      int len = nums.length;
+      int mid = (len-1)/2;
+      int []temp = new int[len];
+      for (int i = 0; i < len; i++)
+        temp[i] = nums[i];
+      int i = mid;
+      int j = len - 1;
+      int pos = 0;
+      while(true){
+        nums[pos++] = temp[mid--];
+        nums[pos++] = temp[j--];
+      }
     }
 }
