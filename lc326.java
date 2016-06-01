@@ -4,6 +4,6 @@
 // Could you do it without using any loop / recursion?
 public class Solution {
     public boolean isPowerOfThree(int n) {
-
+      return n%3 == 0 && isPowerOfThree(n/3);
     }
 }

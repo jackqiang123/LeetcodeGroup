@@ -1,4 +1,5 @@
-// Given an array nums and a target value k, find the maximum length of a subarray that sums to k. If there isn't one, return 0 instead.
+// Given an array nums and a target value k, find the maximum length of a subarray that sums to k.
+//  If there isn't one, return 0 instead.
 //
 // Example 1:
 // Given nums = [1, -1, 5, -2, 3], k = 3,
@@ -12,3 +13,17 @@
 // Can you do it in O(n) time?
 public class Solution {
     public int maxSubArrayLen(int[] nums, int k) {
+      int res = 0;
+      HashMap<Integer, Integer> map = new HashMap();
+      int curSum = 0;
+      for (int i = 0; i < nums.length; i++){
+        curSum += nums[i];
+        if (map.get(k - curSum) != null){
+          res = Math.max(res, i - map.get(k-curSum) + 1);
+        }
+        if (map.get(curSum) == null)
+          map.put(curSum, i);
+      }
+      return res;
+    }
+  }

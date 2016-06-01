@@ -12,7 +12,7 @@
 
 public class Solution {
     public void wiggleSort(int[] nums) {
-      Arrays.sort(nums);
+      Arrays.sort(nums);//can use quick selection to do it
       int len = nums.length;
       int mid = (len-1)/2;
       int []temp = new int[len];
@@ -23,7 +23,9 @@ public class Solution {
       int pos = 0;
       while(true){
         nums[pos++] = temp[mid--];
+        if (pos >= len) return;
         nums[pos++] = temp[j--];
+        if (pos >= len) return;
       }
     }
 }
