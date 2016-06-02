@@ -22,7 +22,36 @@
 // Follow up:
 // Can you figure out ways to solve it with O(n) time complexity?
 public class Solution{
+    int max;
+    class Result{
+      boolean isBST;
+      int size;
+      int lower;
+      int upper;
+      public Result(boolean isBST, int size, Integer lower, Integer upper){
+        this.isBST = isBST;
+        this.size = size;
+        this.lower = lower;
+        this.upper = upper;
+      }
+    }
     public int largestBSTSubtree(TreeNode root) {
-
+      max = 0;
+      isValid(root);
+      return max;
+    }
+      // return the size of BST if valid, return -1 is not a BST
+    private Result isValid(TreeNode root, int lower, int upper){
+      if (root == null) return new Result(true, 0, null, null);
+      Result leftResult = isValid(root.left);
+      Result rightResult = isValid(root.right);
+      if (leftResult.isBST && rightResult.isBST){
+          if ((leftResult.upper == null || leftResult.upper < root.val) &&  (rightResult.lower == null || rightResult.lower > root.val))
+          {
+              max = Math.max(max, leftResult.size + rightResult + 1);
+              return new Result(true, leftResult.size + rightResult + 1, leftResult.lower == null ? root.val : leftResult.lower, rightResult.upper == null ? root.val : rightResult.upper);
+          }
+      }
+      return new Result(false, -1, null, null);
     }
 }

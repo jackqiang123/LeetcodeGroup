@@ -33,6 +33,32 @@
 
 public class Solution {
     public boolean isValidSerialization(String preorder) {
-
+      if (preorder == null || preorder.length() == 0) return false;
+      int treeCount = 0;
+      String[]nodes = preorder.split(",");
+      Stack<Integer> stack = new Stack();
+      int []child = new int[nodes.length];
+      for (int i = 0; i < nodes.length; i++){
+        String cur = nodes[i];
+        if (cur.equals("#")){
+          if (stack.isEmpty()){
+            return nodes.length == 1;
+          }
+          else {
+            child[stack.peek()]++;
+            while(!stack.isEmpty()){
+              if (child[stack.peek()] == 2)
+                stack.pop();
+              else break;
+              if (!stack.isEmpty()) child[stack.peek()]++;
+              else return i == nodes.length - 1;
+            }
+          }
+        }
+        else {
+          stack.push(i);
+        }
+      }
+      return stack.isEmpty();
     }
 }

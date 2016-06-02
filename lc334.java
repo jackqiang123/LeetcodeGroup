@@ -14,6 +14,30 @@
 
 public class Solution {
     public boolean increasingTriplet(int[] nums) {
-
+      int len = nums.length;
+      if (len <= 2) return false;
+      int p1 = nums[0];
+      int p2 = p1;
+      for (int i = 1; i < nums.length; i++){
+        if (p1 == p2){
+          if(nums[i] > p1){
+            p2 = nums[i];
+          }
+          else {
+            p1 = nums[i];
+            p2 = nums[i];
+          }
+        }
+        else {
+          if (nums[i] > p2) return true;
+          else if (nums[i] < p2 && nums[i] > p1){
+            p2 = nums[i];
+          }
+          else if (nums[i] < p1){
+            p1 = nums[i];
+          }
+        }
+      }
+      return false;
     }
 }

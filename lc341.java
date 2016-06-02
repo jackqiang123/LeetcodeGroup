@@ -31,18 +31,33 @@
  */
 public class NestedIterator implements Iterator<Integer> {
 
+    List<NestedInteger> list;
+    Stack<NestedInteger> stack;
+    int mainPointer;
     public NestedIterator(List<NestedInteger> nestedList) {
+      this.list = nestedList;
+      stack = new Stack();
+      if (nestedList.size() == 0) return;
+      mainPointer = 0;
+      NestedInteger cur = null;
+      while(mainPointer < list.size()){
+        if (list.get(mainPointer) == null) mainPointer++;
+        else break;
+      }
+      while(cur.isInteger() || cur.getList)
+
 
     }
 
     @Override
     public Integer next() {
+      NestedInteger cur = stack.pop();
 
     }
 
     @Override
     public boolean hasNext() {
-
+      return mainPointer == list.size();
     }
 }
 
