@@ -8,6 +8,21 @@
 // The result can be in any order.
 public class Solution {
     public int[] intersection(int[] nums1, int[] nums2) {
-
+      Set<Integer> set = new HashSet();
+      for (int n : nums1)
+        set.add(n);
+      List<Integer> res = new ArrayList();
+      for (int n : nums2){
+        if (set.contains(n))
+        {
+            res.add(n);
+            set.remove(n);
+        }
+      }
+      int [] list = new int[res.length];
+      int pos = 0;
+      for (int i : res)
+        list[pos++] = i;
+      return list;
     }
 }

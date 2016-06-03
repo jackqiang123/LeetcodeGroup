@@ -10,6 +10,15 @@
 // You may check the breaking results of n ranging from 7 to 10 to discover the regularities.
 public class Solution {
     public int integerBreak(int n) {
-
+      if (n == 2) return 1;
+      if (n == 3) return 2;
+      int [] dp = new int[n+1];
+      dp[1] = 1;
+      dp[2] = 2;
+      dp[0] = 1;
+      for (int i = 3; i <= n; i++){
+        dp[i] = Math.max(2*dp[i-2], 3*dp[i-3]);
+      }
+      return dp[n];
     }
 }

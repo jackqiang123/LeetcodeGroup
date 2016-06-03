@@ -53,10 +53,51 @@
 // You need two arrays: int rows[n], int cols[n], plus two variables: diagonal, anti_diagonal.
 
 class TicTacToe {
+    int row[];
+    int col[];
+    int diagonal;
+    int anti_diagonal;
+    boolean play1Win;
+    boolean play2Win;
     public TicTacToe(int n) {
-
+      row = new int[n];
+      col = new int[n];
+      diagonal = 0;
+      anti_diagonal = 0;
+      play1Win = false;
+      play2Win = false;
     }
-    public int move(int row, int col, int player) {
-
+    public int move(int r, int c, int player) {
+      if (play1Win || play2Win) return play1Win ? 1 : 2;
+      if (player == 1){
+        row[r]++;
+        col[c]++;
+        if (r == c) {
+          diagonal++;
+        }
+        if (r + c == n){
+          anti_diagonal++;
+        }
+        if (row[r] == n || col[c] == n || diagonal == n || anti_diagonal == n){
+          play1Win = true;
+        }
+        if (play1Win) return 1;
+        return 0;
+      }
+      else {
+        row[r]--;
+        col[c]--;
+        if (r == c) {
+          diagonal--;
+        }
+        if (r + c == n){
+          anti_diagonal--;
+        }
+        if (row[r] == -n || col[c] == -n || diagonal == -n || anti_diagonal == -n){
+          play2Win = true;
+        }
+        if (play2Win) return 2;
+        return 0;
+      }
     }
   }

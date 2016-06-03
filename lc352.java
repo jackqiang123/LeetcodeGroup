@@ -21,16 +21,45 @@
 public class SummaryRanges {
 
     /** Initialize your data structure here. */
+    // use a linear structure to store interval is low efficient to maintain dynamic data
+    // therefore, we consider a tree
+    TreeMap<Integer, Interval> tree;
     public SummaryRanges() {
-
+      tree = new TreeMap();
     }
 
     public void addNum(int val) {
-
+      if (tree.get(val) != null) return;
+      Integer floor = tree.lowerKey(val);
+      Integer ceiling = tree.higherKey(val);
+      if (floor != null && ceiling != null && tree.get(floor).end + 1 == val && tree.get(ceiling).start == val + 1){
+        tree.get(floor).end = tree.get(ceiling).end;
+        tree.remove(ceiling);
+      }
+      else if (floor != null && tree.get(floor).end + 1 >= val)
+        tree.get(floor).end = Math.max(tree.get(floor).end, val);
+      else if (ceiling != null && tree.get(ceiling).start - 1 == val)
+      {  tree.put(val, new Interval(val, tree.get(ceiling).end));
+         tree.remove(ceiling);
+       }
+       else tree.put(val, new Interval(val, val));
+      // the code below incurs two tree operations, thus it if low efficient
+      // if (floor != null && tree.get(floor).end + 1 == val){
+      //     tree.get(floor).end++;
+      // }
+      // else {
+      //     floor = val;
+      //     tree.put(val, new Interval(val, val));
+      // }
+      //
+      // if (ceiling != null && tree.get(ceiling).start - 1 == tree.get(floor).end){
+      //   tree.get(floor).end = tree.get(ceiling).end;
+      //   tree.remove(ceiling);
+      // }
     }
 
     public List<Interval> getIntervals() {
-
+      return new ArrayList<>(tree.values());
     }
 }
 

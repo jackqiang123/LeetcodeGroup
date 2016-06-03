@@ -35,7 +35,64 @@
 // Credits:
 // Special thanks to @elmirap for adding this problem and creating all test cases.
 public class Solution {
+    int min;
+    int max;
+    int res;
+    int curRes;
     public int numberOfPatterns(int m, int n) {
-
+      min = m; max = n; res = 0;
+      helper(0, new ArrayList());
+      res += (4*curRes);
+      curRes = 0;
+      helper(1, new ArrayList());
+      res += (4*curRes);
+      curRes = 0;
+      helper(4, new ArrayList());
+      res += (curRes);
+      return res;
+    }
+    private void helper(int num, List<Integer> cur){
+        cur.add(num);
+        if (cur.size() >= m && cur.size() <= n){
+          curRes++;
+        }
+        if (cur.size() < n){
+          for (int i = 0; i <= 8; i++){
+              if (canVisit(cur, i)){
+                helper(i, cur);
+              }
+          }
+        }
+        cur.remove(num);
+    }
+    private boolean canVisit(List<Integer>cur, int num){
+      if (cur.contains(num)) return false;
+      if (cur.size() == 0) return true;
+      int from = cur.get(cur.size() - 1);// from to num
+      int sx = from/3;
+      int sy = from%3;
+      int dx = num/3;
+      int dy = num%3;
+      if (sx == dx){
+        if (Math.abs(sy - dy)==1) return true;
+        int midy = (sy + dy)/2;
+        int mid = sx*3 + midy;
+        if (cur.contains(mid)) return true;
+        else return false;
+      }
+      else if (sy == dy){
+        if (Math.abs(sx - dx)==1) return true;
+        int midx = (sx + dx)/2;
+        int mid = midx*3 + sy;
+        if (cur.contains(mid)) return true;
+        else return false;
+      }
+      else if (from == 4 || num == 4)
+        return true;
+      else if (dx - sx == dy - sy || dx - sx == sy - dy){
+        if (cur.contains(4)) return true;
+        else return false;
+      }
+      return true;
     }
   }

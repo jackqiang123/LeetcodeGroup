@@ -13,6 +13,25 @@
 
 public class Solution {
     public int[] intersect(int[] nums1, int[] nums2) {
-
+      Map<Integer, Integer> map = new HashMap();
+      for (int n : nums1){
+        if (map.get(n) == null) map.put(n,1);
+        else map.put(n, map.get(n) + 1);
+      }
+      List<Integer> ls = new ArrayList<Integer>();
+      for (int n : nums2){
+        if (map.get(n) != null){
+          ls.add(n);
+          map.put(n, map.get(n)-1);
+          if (map.get(n) == 0)
+            map.remove(n);
+        }
+      }
+      int [] res = new int[ls.size()];
+      int pos = 0;
+      for (int n : ls){
+        res[pos++] = n;
+      }
+      return res;
     }
 }
