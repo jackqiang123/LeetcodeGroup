@@ -17,7 +17,7 @@ public class Solution {
         ArrayList<List<Integer>> res = new ArrayList<List<Integer>>();
         int len = nums.length;
         if (len < 3) return res;
-        for (int i = 0; i < len - 2; i = incraese(nums,i)){
+        for (int i = 0; i < len - 2; i = increase(nums,i)){
           int lo = i + 1;
           int hi = len - 1;
           int a = nums[i];

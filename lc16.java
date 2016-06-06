@@ -6,6 +6,7 @@
 //     The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).
 public class Solution {
     public int threeSumClosest(int[] nums, int target) {
+          Arrays.sort(nums);
           int len = nums.length;
           int res = nums[0] + nums[1] + nums[2];
           int distance = Math.abs(res - target);

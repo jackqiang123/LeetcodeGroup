@@ -2,7 +2,7 @@
 public class Solution {
     public boolean isPalindrome(int x) {
        if (x == Integer.MIN_VALUE) return false;
-       if (x < 0) x = -x;
+       if (x < 0) return false;
        int res = x;
        int rev = 0;
        while(res != 0){

@@ -30,6 +30,7 @@ public class Solution {
             if (sum == target){
               ArrayList<Integer> cur = new ArrayList<Integer>();
               cur.add(a);cur.add(b);cur.add(c);cur.add(d); res.add(cur);
+               lo = increase(nums, lo);
             }else if (sum < target){
               lo = increase(nums, lo);
             }

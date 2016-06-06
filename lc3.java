@@ -10,23 +10,23 @@
 // Note that the answer must be a substring, "pwke" is a subsequence and not a substring.
 public class Solution {
     public int lengthOfLongestSubstring(String s) {
-        if (s == null ||　s.length() == 0) return 0;
+        if (s == null || s.length() == 0) return 0;
         if (s.length() == 1) return 1;
         int res = 1;
         int []lasttime = new int[256];
-        for (int i : lasttime)
+        for (int i = 0; i < lasttime.length; i++)
           lasttime[i] = -1;
         int i = 0; int j = 0;
         while(j < s.length())
         {
-          if (lasttime[s.charAt(j)-'a'] < i){
+          if (lasttime[s.charAt(j)] < i){
             res = Math.max(res, j - i + 1);
-            lastime[s.charAt(j) - 'a'] = j;
+            lasttime[s.charAt(j)] = j;
             j++;
           }
           else{
-            i = j;
-            lastime[s.charAt(j) - 'a'] = j;
+            i = lasttime[s.charAt(j)] + 1;
+            lasttime[s.charAt(j)] = j;
             j++;
           }
         }

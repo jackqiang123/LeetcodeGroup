@@ -18,17 +18,17 @@ public class Solution {
       if (left == right){
         cur.append('(');
         helper(cur,left - 1, right);
-        cur.remove(cur.length() - 1);
+        cur.deleteCharAt(cur.length() - 1);
       }
       else if (left < right){
         if (left > 0){
         cur.append('(');
         helper(cur,left - 1, right);
-        cur.remove(cur.length() - 1);}
+        cur.deleteCharAt(cur.length() - 1);}
         if (right > 0){
         cur.append(')');
         helper(cur,left, right - 1);
-        cur.remove(cur.length() - 1);
+        cur.deleteCharAt(cur.length() - 1);
        }
       }
 

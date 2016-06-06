@@ -45,7 +45,7 @@ public class Solution {
         }else if (left != null){
           dummy.next = left; return res.next;
         }else {
-          dummy.next = right. return res.next;
+          dummy.next = right; return res.next;
         }
       }
       return res.next;

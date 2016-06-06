@@ -23,9 +23,9 @@ public class Solution {
       dummy.next = head;
       ListNode res = dummy;
       ListNode p = dummy;
-      ListNdoe q = dummy;
+      ListNode q = dummy;
       while(n > 0){
-        q = q.next;
+        q = q.next; n--;
       }
       while(q.next != null){
         p = p.next;

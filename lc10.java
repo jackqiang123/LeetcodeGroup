@@ -17,6 +17,7 @@
 // isMatch("ab", ".*") → true
 // isMatch("aab", "c*a*b") → true
 
+
 public class Solution {
     public boolean isMatch(String s, String p) {
         int plen = p.length();
@@ -24,21 +25,17 @@ public class Solution {
         if (slen == 0) {
           if (plen == 0) return true;
           if (plen == 1) return false;
-          else return p.charAt(1) == '*' && isMatch(s, p.subString(2));
+          else return p.charAt(1) == '*' && isMatch(s, p.substring(2));
         }
         if (plen == 0) return false;
-        if (plen == 1) return (s.charAt(0) == p.charAt(0) || p.charAt(0) == '.') && isMatch(s.subString(1),p.subString(1));
+        if (plen == 1) return (s.charAt(0) == p.charAt(0) || p.charAt(0) == '.') && isMatch(s.substring(1),p.substring(1));
         if (p.charAt(1) != '*'){
-          return (s.charAt(0) == p.charAt(0) || p.charAt(0) == '.') && isMatch(s.subString(1),p.subString(1));
+          return (s.charAt(0) == p.charAt(0) || p.charAt(0) == '.') && isMatch(s.substring(1),p.substring(1));
         }
         else {
-            for (int i = 0; i < slen; i++)
-            {
-              if ((s.charAt(0) == p.charAt(0) || p.charAt(0) == '.') && isMatch(s.subString(1),p))
+              if ((s.charAt(0) == p.charAt(0) || p.charAt(0) == '.') && isMatch(s.substring(1),p))
                 return true;
-            }
         }
-        return isMatch(s,p.subString(2)); // delete this char case
-
+        return isMatch(s,p.substring(2)); // delete this char case
     }
 }

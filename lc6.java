@@ -14,10 +14,10 @@
 // convert("PAYPALISHIRING", 3) should return "PAHNAPLSIIGYIR".
 
 public class Solution {
-    public String convert(String s, int numRows) {
-        if (numRows <= 1) return s;
+    public String convert(String s, int row) {
+        if (row <= 1) return s;
         StringBuilder res = new StringBuilder();
-        int gap = 2*numRows - 2;
+        int gap = 2*row - 2;
         for (int i = 0; i < row; i++)
         {
           if (i == 0 || i == row - 1)

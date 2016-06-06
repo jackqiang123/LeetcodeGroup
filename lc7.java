@@ -6,7 +6,7 @@
 
 public class Solution {
     public int reverse(int x) {
-      if (x == Integer.MIN_VALUE) return false;
+      if (x == Integer.MIN_VALUE) return 0;
       boolean isPos = (x>=0);
       if (!isPos) x = -x;
       int res = 0;

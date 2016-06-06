@@ -13,14 +13,14 @@ public class Solution {
           int len = nums.length;
           if (len <= 1) return len;
           int oldValue = nums[0];
-          int len = 1;
+          int reslen = 1;
           for (int i = 1; i < len; i++){
             if (oldValue != nums[i]){
               oldValue = nums[i];
-              swap(nums, len++, i);
+              swap(nums, reslen++, i);
             }
           }
-          return len;
+          return reslen;
     }
     private void swap(int nums[], int i, int j){
       int t = nums[i]; nums[i] = nums[j]; nums[j] = t;

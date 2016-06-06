@@ -7,6 +7,7 @@
 public class Solution {
     public List<String> letterCombinations(String digits) {
       List<String> res = new ArrayList<String>();
+      if (digits.length() == 0) return res;
       HashMap<Character,List<Character>> map = new HashMap<Character,List<Character>>();
       String[] mapping = new String[] {"0", "1", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
       helper(digits, res, new ArrayList<Character>(), 0, mapping);
