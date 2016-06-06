@@ -15,13 +15,15 @@
 // word = "SEE", -> returns true,
 // word = "ABCB", -> returns false.
 public class Solution {
+    private boolean [][]visit;
     public boolean exist(char[][] board, String word) {
         int h = board.length;
         int w = board[0].length;
+        visit = new boolean[h][w];
         for (int i = 0; i < h; i++){
           for (int j = 0; j < w; j++)
           {
-            if (dfs(board, i, j, word, 0, new boolean[h][w]))
+            if (dfs(board, i, j, word, 0))
               return true;
           }
         }

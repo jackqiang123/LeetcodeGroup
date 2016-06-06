@@ -19,9 +19,10 @@ public class Solution {
       }
       else if (cur.size() >= 4) return;
       else{
-          for (int i = 1; i <= 3 && i + start <= s.length(); i++){
-            String curString = s.subString(start, i+start);
-            if (Integer.parseInt(cur) <= 255){
+          int maxBit = s.charAt(start) == '0' ? 1 : 3;
+          for (int i = 1; i <= maxBit && i + start <= s.length(); i++){
+            String curString = s.substring(start, i+start);
+            if (Integer.parseInt(curString) <= 255){
               cur.add(curString);
               dfs(s, i + start, cur);
               cur.remove(cur.size()-1);

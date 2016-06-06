@@ -48,8 +48,8 @@ public class Solution {
         StringBuilder curLine = new StringBuilder();
         for (int j = 0; j < table.length; j++){
           if (table[i][j] == 'Q')
-            curLine.add('Q');
-          else curLine.add('.');
+            curLine.append('Q');
+          else curLine.append('.');
         }
         cur.add(curLine.toString());
       }
@@ -66,7 +66,7 @@ public class Solution {
         if (table[i][y-j] == 'Q') return false;
         j++;
       }
-      int j = 1;
+      j = 1;
       for (int i = x - 1; i>=0 && y + j < table.length; i--){
         if (table[i][y+j] == 'Q') return false;
         j++;

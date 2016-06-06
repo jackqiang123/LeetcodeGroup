@@ -17,7 +17,7 @@ public class Solution {
       ListNode dummy = new ListNode(0);
       dummy.next = head;
       ListNode res = dummy;
-      ListNdoe p1 = dummy;
+      ListNode p1 = dummy;
       ListNode p2;
       while(p1 != null && p1.next != null){
             if (p1.next.next == null){
@@ -32,7 +32,6 @@ public class Solution {
                 while(p2 != null && p2.val == toRemove)
                   p2 = p2.next;
                 p1.next = p2;
-                p1 = p1.next;
               }
             }
       }

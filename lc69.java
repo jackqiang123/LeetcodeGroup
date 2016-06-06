@@ -3,6 +3,7 @@
 // Compute and return the square root of x.
 public class Solution {
     public int mySqrt(int x) {
+        if (x == 0) return 0;
       int lo = 1;
       int hi = x;
       while(lo < hi){
@@ -15,6 +16,6 @@ public class Solution {
           hi = mid;
         else lo = mid + 1;
       }
-      return (lo/mid >= mid && lo/(mid + 1)< mid + 1) ? lo : lo + 1;
+      return (x/lo >= lo && x/(lo + 1)< lo + 1) ? lo : lo + 1;
     }
 }

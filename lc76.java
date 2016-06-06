@@ -53,6 +53,6 @@ public class Solution {
             j++;
         }
       }
-      return s.subString(i, j+1);
+      return bestlength == Integer.MAX_VALUE ? "" : s.substring(besti, bestj+1);
     }
 }

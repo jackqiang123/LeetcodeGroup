@@ -22,7 +22,9 @@ public class Solution {
         len++;
         dummy = dummy.next;
       }
+      if (len <= 1|| k == 0) return head;
       k = k % len;
+      if (k == 0) return head;
       ListNode p1 = res;
       ListNode p2 = res;
       while(p1.next != null){

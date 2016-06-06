@@ -15,7 +15,7 @@ public class Solution {
     List<List<Integer>> res;
     public List<List<Integer>> combine(int n, int k) {
       res = new ArrayList<List<Integer>>();
-      dfs(n, k, 1, new ArrayList<Integer>);
+      dfs(n, k, 1, new ArrayList<Integer>());
       return res;
     }
     private void dfs(int n, int k, int start, ArrayList<Integer> cur){

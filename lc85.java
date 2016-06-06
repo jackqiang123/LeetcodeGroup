@@ -3,6 +3,7 @@
 public class Solution {
     public int maximalRectangle(char[][] matrix) {
       int h = matrix.length;
+      if (h == 0) return 0;
       int w = matrix[0].length;
       int input[] = new int[w];
       int max = 0;
@@ -16,30 +17,31 @@ public class Solution {
       return max;
     }
 
-    private int histgram(int []input){
-        Stack<Integer> stack = new Stack<Integer>();
-        int res = 0;
-        for (int i = 0; i < heights.length; i++){
-          if (stack.isEmpty()) stack.push(i);
-          else {
-            while(true){
-              if (stack.isEmpty() || stack.peek() <= heights[i])
-              {
-                stack.push(i); break;
-              }
-              else{
-                int left = stack.pop();
-                res = Math.max(res, (i -left)*heights[left]);
-              }
+    private int histgram(int []heights) {
+      Stack<Integer> stack = new Stack<Integer>();
+      int res = 0;
+      for (int i = 0; i < heights.length; i++){
+        if (stack.isEmpty()) stack.push(i);
+        else {
+          while(true){
+            if (stack.isEmpty() || heights[stack.peek()] <= heights[i])
+            {
+              stack.push(i); break;
+            }
+            else{
+              int left = stack.pop();
+              int leftboundary = stack.isEmpty() ? -1 : stack.peek();
+              res = Math.max(res, (i - leftboundary - 1)*heights[left]);
             }
           }
         }
-        int right = heights.length;
-        while(!stack.isEmpty()){
-          int left = stack.pop();
-          res = Math.max(res, (right - left)*heights[left]);
-        }
-        return res;
-
+      }
+      int right = heights.length;
+      while(!stack.isEmpty()){
+        int left = stack.pop();
+        int leftboundary = stack.isEmpty() ? -1 : stack.peek();
+        res = Math.max(res, (right - leftboundary - 1)*heights[left]);
+      }
+      return res;
     }
 }

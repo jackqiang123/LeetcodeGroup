@@ -16,18 +16,18 @@ public class Solution {
       ListNode dummy = new ListNode(0);
       dummy.next = head;
       ListNode res = dummy;
-      ListNdoe p1 = dummy;
+      ListNode p1 = dummy;
       ListNode p2 = p1.next;
-      while(p2.next != null){
+      while(p2 != null && p2.next != null){
         if (p2.val == p2.next.val)
           p2 = p2.next;
         else {
-          p1.next.next = p2.next;
+          p1.next = p2;
           p1 = p2;
           p2 = p1.next;
         }
       }
-      p1.next.next = null;
+      p1.next = p2;
       return res.next;
     }
 }

@@ -10,7 +10,7 @@ public class Solution {
       int hi = nums.length - 1;
       while(lo < hi){
         int mid = (lo + hi)/2;
-        if (nums[mid] == target) return mid;
+        if (nums[mid] == target) return true;
         if (nums[mid] < nums[hi]){
           if (nums[hi] >= target && nums[mid] < target){
             lo = mid + 1;
@@ -23,6 +23,6 @@ public class Solution {
         }
         else hi--;
       }
-      return nums[lo] == target ? lo : - 1;
+      return nums[lo] == target;
     }
 }

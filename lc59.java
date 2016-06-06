@@ -25,26 +25,25 @@ public class Solution {
         h--;i++;j--;
         if (h <= 0) return res;
         for (int k = 0; k < h; k++){
-          res[i][j++] = num;
+          res[i++][j] = num;
           num++;
         }
         w--;i--;j--;
         if (w <= 0) return res;
 
         for (int k = 0; k < w; k++){
-          res[i][j++] = num;
+          res[i][j--] = num;
           num++;
         }
         h--;i--; j++;
         if (h <= 0) return res;
 
         for (int k = 0; k < h; k++){
-          res[i][j++] = num;
+          res[i--][j] = num;
           num++;
         }
         w--; i++;j++;
         if (w <= 0) return res;
       }
-      return res;
     }
 }

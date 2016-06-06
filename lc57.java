@@ -24,9 +24,9 @@ public class Solution {
       for (Interval interval : intervals){
         if (newInterval.start > interval.end)
           res.add(interval);
-        else if (newInterval.end > interval.start){
+        else if (newInterval.end < interval.start){
           res.add(newInterval);
-          newInterval = interval; // update the newInterval. o
+          newInterval = interval; // update the newInterval
           //therwise, we will need to use a flag variable to mark it.
         }
         else{

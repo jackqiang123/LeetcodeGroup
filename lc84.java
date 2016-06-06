@@ -18,13 +18,14 @@ public class Solution {
         if (stack.isEmpty()) stack.push(i);
         else {
           while(true){
-            if (stack.isEmpty() || stack.peek() <= heights[i])
+            if (stack.isEmpty() || heights[stack.peek()] <= heights[i])
             {
               stack.push(i); break;
             }
             else{
               int left = stack.pop();
-              res = Math.max(res, (i -left)*heights[left]);
+              int leftboundary = stack.isEmpty() ? -1 : stack.peek();
+              res = Math.max(res, (i - leftboundary - 1)*heights[left]);
             }
           }
         }
@@ -32,7 +33,8 @@ public class Solution {
       int right = heights.length;
       while(!stack.isEmpty()){
         int left = stack.pop();
-        res = Math.max(res, (right - left)*heights[left]);
+        int leftboundary = stack.isEmpty() ? -1 : stack.peek();
+        res = Math.max(res, (right - leftboundary - 1)*heights[left]);
       }
       return res;
     }

@@ -18,7 +18,7 @@ public class Solution {
         if (matrix[i][0] == 0){ col0 = true; break; }
       }
       for (int j = 0; j < w; j++){
-        if (matrix[0][k] == 0) { row0 = true; break; }
+        if (matrix[0][j] == 0) { row0 = true; break; }
       }
       for (int i = 1; i < h; i++){
         for (int j = 1; j < w; j++){

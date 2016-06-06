@@ -3,7 +3,7 @@
 // The digits are stored such that the most significant digit is at the head of the list.
 public class Solution {
     public int[] plusOne(int[] digits) {
-      int bit = 0;
+      int bit = 1;
       for (int i = digits.length - 1; i >= 0; i--){
         int cur = bit + digits[i];
         bit = cur/10;

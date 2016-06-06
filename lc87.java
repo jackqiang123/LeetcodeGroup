@@ -42,9 +42,9 @@ public class Solution {
       if (!simpleCheck(s1,s2)) return false;
       if (s1.equals(s2)) return true;
       for (int i = 1; i < s1.length(); i++){
-        if (isScramble(s1.subString(0, i), s2.subString(0, i)) && isScramble(s1.subString(i, s1.length()), s2.subString(i, s2.length())))
+        if (isScramble(s1.substring(0, i), s2.substring(0, i)) && isScramble(s1.substring(i, s1.length()), s2.substring(i, s2.length())))
           return true;
-        if (isScramble(s1.subString(0, i), s2.subString(s2.length()-i, s2.length())) && isScramble(s1.subString(i, s1.length()), s2.subString(0, s2.length() - i)))
+        if (isScramble(s1.substring(0, i), s2.substring(s2.length()-i, s2.length())) && isScramble(s1.substring(i, s1.length()), s2.substring(0, s2.length() - i)))
           return true;
       }
       return false;

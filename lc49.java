@@ -24,7 +24,7 @@ public class Solution {
         else {
           List<String> list = new ArrayList<String>();
           list.add(s);
-          map.put(key, list)
+          map.put(key, list);
         }
       }
       List<List<String>> res = new ArrayList<List<String>>();

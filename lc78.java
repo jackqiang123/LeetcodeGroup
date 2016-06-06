@@ -23,7 +23,7 @@ public class Solution {
     public List<List<Integer>> subsets(int[] nums) {
       res = new ArrayList<List<Integer>>();
       Arrays.sort(nums);
-      dfs(new ArrayList<Integer> cur, 0, nums);
+      dfs(new ArrayList<Integer>(), 0, nums);
       return res;
     }
     private void dfs(List<Integer> cur, int start, int nums[]){

@@ -20,9 +20,10 @@ public class Solution {
       boolean []visit;
       List<List<Integer>> res;
     public List<List<Integer>> subsetsWithDup(int[] nums) {
+        visit = new boolean[nums.length];
       Arrays.sort(nums);
       res = new ArrayList<List<Integer>>();
-      dfs(new ArrayList<Integer>(), 0);
+      dfs(new ArrayList<Integer>(), 0, nums);
       return res;
     }
     private void dfs(ArrayList<Integer> cur, int start, int []nums){
@@ -32,10 +33,10 @@ public class Solution {
       else{
         dfs(cur, start + 1, nums);
         if (start == 0 || nums[start] != nums[start - 1] || visit[start - 1]){
-          res.add(nums[start]);
+          cur.add(nums[start]);
           visit[start] = true;
           dfs(cur, start + 1, nums);
-          res.remove(res.size()-1);
+          cur.remove(cur.size()-1);
           visit[start] = false;
         }
       }

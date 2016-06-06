@@ -20,13 +20,13 @@ public class Solution {
       while(i < input.length()){
         if (input.charAt(i) == last) {count++;}
         else {
-          res.append(count).apend(last);
+          res.append(count).append(last);
           last = input.charAt(i);
           count = 1;
         }
         ++i;
       }
-      res.append(count).apend(last);
+      res.append(count).append(last);
       return res.toString();
     }
 }

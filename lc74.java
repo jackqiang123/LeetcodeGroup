@@ -29,6 +29,6 @@ public class Solution {
         else if (matrix[x][y] < target) lo = mid + 1;
         else hi = mid;
       }
-      return matrix[lo/w][lo%w] == target || matrix[(lo+1)/w][(lo+1)%w] == target;
+      return matrix[lo/w][lo%w] == target;
     }
 }

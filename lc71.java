@@ -13,15 +13,15 @@
 //     In this case, you should ignore redundant slashes and return "/home/foo".
 public class Solution {
     public String simplifyPath(String path) {
-      String[]paths = path.split("/+");
+      String[]paths = path.split("/");
       Stack<String> stack = new Stack<String>();
       for (String s : paths){
         if (s.equals(".")) continue;
-        if (s.equals("..")){
-          if (!stack.isEmpty()) stack.pop();
-          continue;
+        else if (s.equals("..")){
+           if (!stack.isEmpty()) stack.pop();
         }
-        stack.push(s);
+        else if (s.length() != 0)
+         stack.push(s);
       }
       StringBuilder res = new StringBuilder();
       while(!stack.isEmpty()){

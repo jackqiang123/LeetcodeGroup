@@ -16,13 +16,13 @@ public class Solution {
 
     private void backtrack(int []nums, List<Integer> cur){
       if (cur.size() == nums.length){
-        res.add(new ArrayList<Integer>(nums));
+        res.add(new ArrayList<Integer>(cur));
       }
       else{
         for(int i = 0; i < visit.length; i++){
           if (!visit[i]){
             visit[i] = true;
-            cur.add(visit[i]);
+            cur.add(nums[i]);
             backtrack(nums, cur);
             cur.remove(cur.size()-1);
             visit[i] = false;

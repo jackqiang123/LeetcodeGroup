@@ -13,6 +13,7 @@ public class Solution {
     public List<Integer> spiralOrder(int[][] matrix) {
       List<Integer> res = new ArrayList<Integer>();
       int h = matrix.length;
+      if (h == 0) return res;
       int w = matrix[0].length;
       int i = 0;
       int j = 0;
@@ -36,8 +37,7 @@ public class Solution {
             res.add(matrix[i--][j]);
           }
           w--; i++;j++;
-          if (h <= 0) return res;
+          if (w <= 0) return res;
       }
-      return res;
     }
 }

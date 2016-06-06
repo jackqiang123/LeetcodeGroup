@@ -18,9 +18,7 @@ public class Solution {
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
       Arrays.sort(candidates);
       res = new ArrayList<List<Integer>>();
-      for (int i = 0; i < candidates.length; i = increase(candidates, i)) {
-        help(i, candidates, new ArrayList<Integer>(), target);
-      }
+      help(0, candidates, new ArrayList<Integer>(), target);
       return res;
     }
     private void help(int start, int []nums, ArrayList<Integer> cur, int target){
@@ -28,9 +26,9 @@ public class Solution {
       if (target == 0){
         res.add(new ArrayList<Integer>(cur));
       }
-      else if (target < 0) return;
+      else if (target <= 0) return;
       else{
-          for (int i = start; i < nums.length; i = increase(candidate,i)){
+          for (int i = start; i < nums.length; i = increase(nums,i)){
             cur.add(nums[i]);
             help(i, nums, cur, target - nums[i]);
             cur.remove(cur.size()-1);

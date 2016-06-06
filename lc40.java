@@ -20,9 +20,7 @@ public class Solution {
   public List<List<Integer>> combinationSum2(int[] candidates, int target) {
     Arrays.sort(candidates);
     res = new ArrayList<List<Integer>>();
-    for (int i = 0; i < candidates.length; i = increase(candidates, i)) {
-      help(i, candidates, new ArrayList<Integer>(), target);
-    }
+    help(0, candidates, new ArrayList<Integer>(), target);
     return res;
   }
   private void help(int start, int []nums, ArrayList<Integer> cur, int target){
@@ -31,7 +29,7 @@ public class Solution {
     }
     else if (target < 0 || start >= nums.length) return;
     else{
-        for (int i = start; i < nums.length; i = increase(candidate,i)){
+        for (int i = start; i < nums.length; i = increase(nums,i)){
           cur.add(nums[i]);
           help(i + 1, nums, cur, target - nums[i]);
           cur.remove(cur.size()-1);
