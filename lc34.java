@@ -11,7 +11,7 @@
 public class Solution {
     public int[] searchRange(int[] nums, int target) {
       int len = nums.length;
-      int res [] = new int [2]{-1,-1};
+      int res [] = new int []{-1,-1};
       if (len == 0) return res;
       int lo = 0;
       int hi = len - 1;
