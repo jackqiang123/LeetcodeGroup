@@ -25,7 +25,7 @@
 public class Solution {
     public List<List<Integer>> levelOrderBottom(TreeNode root) {
       List<List<Integer>> res = new ArrayList<List<Integer>>();
-      Queue<TreeNode> queue = new LinkedList<Queue>();
+      Queue<TreeNode> queue = new LinkedList<TreeNode>();
       if (root == null) return res;
       queue.add(root);
       queue.add(null);
@@ -40,7 +40,7 @@ public class Solution {
         else{
           if (!queue.isEmpty())
             queue.add(null);
-          res.insert(0, curRes);
+          res.add(0, curRes);
           curRes = new ArrayList<Integer>();
         }
       }

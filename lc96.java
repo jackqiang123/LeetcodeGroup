@@ -12,11 +12,15 @@ public class Solution {
     public int numTrees(int n) {
       if (n == 0 || n == 1) return 1;
       int res = 0;
-      for (int mid = 1; mid <= n; mid++){
+      int []dp = new int[n+1];
+      dp[0] = 1;
+      dp[1] = 1;
+      for (int i = 2; i <= n; i++){
         // more efficient alg is to do dynamic programming
         // or use a cache array
-        res += numTrees(mid - 1) * numTrees(n - mid);
+        for (int mid = 1; mid <= i; mid++)
+            dp[i] += dp[mid - 1] * dp[i - mid];
       }
-      return res;
+      return dp[n];
     }
 }

@@ -18,7 +18,8 @@ public class Solution {
     private RandomListNode helper(RandomListNode head){
       if (head == null) return null;
       if (map.get(head) != null) return map.get(head);
-      RandomListNode newHead = new RandomListNode(head.val);
+      RandomListNode newHead = new RandomListNode(head.label);
+      map.put(head, newHead);
       newHead.next = helper(head.next);
       newHead.random = helper(head.random);
       return newHead;

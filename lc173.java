@@ -38,7 +38,7 @@ public class Solution {
           else if (j == w - 1)
             dp[i][j] = Math.max(1, dp[i+1][j]-d[i][j]);
           else {
-            dp[i][j] = Math.max(1, Math.min(dp[i+1][j] - d[i][j], dp[i][j+1] - dp[i][j]));
+            dp[i][j] = Math.max(1, Math.min(dp[i+1][j] - d[i][j], dp[i][j+1] - d[i][j]));
           }
         }
       }

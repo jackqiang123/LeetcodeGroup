@@ -37,9 +37,10 @@ public class Solution {
       return dfs(node);
     }
     private UndirectedGraphNode dfs(UndirectedGraphNode node){
-      if (map.get(node.val) != null) return map.get(node.val);
-      UndirectedGraphNode root = new UndirectedGraphNode(node.val);
-      map.put(node.val, root);
+      if (node == null) return null;
+      if (map.get(node.label) != null) return map.get(node.label);
+      UndirectedGraphNode root = new UndirectedGraphNode(node.label);
+      map.put(node.label, root);
       for (UndirectedGraphNode n : node.neighbors){
         root.neighbors.add(dfs(n));
       }

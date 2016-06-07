@@ -12,18 +12,21 @@ public class Solution {
       for (int i = len - 1; i >= 0; i--){
         for (int j = i; j < len; j++)
         {
-          tab[i][j] = s.charAt(i) == s.charAt(j) && (j-i>=2 || tab[i+1][j-1]);
+          tab[i][j] = s.charAt(i) == s.charAt(j) && (j-i<=2 || tab[i+1][j-1]);
         }
       }
-      return dfs(0, len - 1, tab);
-    }
-
-    private int dfs(int start, int end, boolean[][] tab){
-      if (tab[start][end]) return 0;
-      int curBest = Integer.MAX_VALUE;
-      for (int i = start; i < end; i++){
-        curBest = Math.min(curBest, dfs(start,i,tab) + dfs(i+1,end,tab));
+      int dp[] = new int[len];
+      for (int i = 0; i < len; i++){
+        if (i == 0) dp[0] = 0;
+        else if (tab[0][i]) dp[i] = 0;
+        else {
+          dp[i] = i;
+          for (int j = 0; j < i; j++){
+            if (tab[j+1][i])
+              dp[i] = Math.min(dp[i], 1 + dp[j]);
+          }
+        }
       }
-      return curBest;
+      return dp[len - 1];
     }
 }

@@ -20,6 +20,7 @@ public class Solution {
       merge(head, reverse(median));
     }
     private ListNode findMedian(ListNode head){
+      if (head == null || head.next == null) return null;
       ListNode p1 = new ListNode(0);
       p1.next = head;
       ListNode p2 = p1;
@@ -41,7 +42,7 @@ public class Solution {
       }
       return dummy.next;
     }
-    private void merge(ListNode h1, ListNode h2){
+    private ListNode merge(ListNode h1, ListNode h2){
       ListNode res = new ListNode(0);
       ListNode dummy = res;
       while(h1 != null && h2 != null){

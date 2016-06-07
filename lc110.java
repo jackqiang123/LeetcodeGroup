@@ -20,6 +20,6 @@ public class Solution {
       int left = depth(root.left);
       int right = depth(root.right);
       if (left == -1 || right == -1 || Math.abs(left - right) > 1) return -1;
-      else return Math.max(left, right);
+      else return 1 + Math.max(left, right);
     }
 }

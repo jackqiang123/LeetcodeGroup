@@ -17,9 +17,9 @@ public class Solution {
       Map<Integer, Integer> map = new HashMap<Integer, Integer>();
       for (int i = 0; i + 10 <= s.length(); i++)
       {
-        String cur = s.subString(i, i + 10);
+        String cur = s.substring(i, i + 10);
         int code = enCode(cur);
-        if (map.get(code) != null)
+        if (map.get(code) == null)
           map.put(code,1);
         else if (map.get(code) == 1){
           res.add(cur);
@@ -34,7 +34,7 @@ public class Solution {
       for (int i = 0; i < 10; i++){
         char c = s.charAt(i);
         if (c == 'A')
-          res = res * 4；
+          res = res * 4;
         else if (c == 'T')
           res = res * 4 + 1;
         else if (c == 'G')

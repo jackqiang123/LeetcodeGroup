@@ -39,6 +39,7 @@ public class Solution {
         if (distance.get(cur) > targetDistance) break;
         for (String n : neigb){
           if (distance.get(n) == null || distance.get(n) == distance.get(cur) + 1){
+            if (distance.get(n) == null) queue.add(n);
             distance.put(n, distance.get(cur) + 1);
             if (n.equals(endWord)) targetDistance = Math.min(targetDistance, distance.get(endWord));
             if (prefix.get(n) == null) prefix.put(n, new ArrayList<String>());
@@ -47,7 +48,6 @@ public class Solution {
         }
       }
       ArrayList<String> cur = new ArrayList<String>();
-      cur.add(endWord);
       dfs(beginWord, endWord, cur);
       return res;
     }
@@ -55,14 +55,16 @@ public class Solution {
     private void dfs(String beginWord, String endWord, ArrayList<String> cur){
       if (endWord.equals(beginWord)){
         List<String> curList = new ArrayList<String>(cur);
-        curList.add(beginWord);
+        curList.add(0, beginWord);
         res.add(curList);
       }
       else {
         List<String> prefixList = prefix.get(endWord);
         cur.add(0, endWord);
-        for (String prefixWord : prefix){
+        if (prefixList != null){
+        for (String prefixWord : prefixList){
           dfs(beginWord, prefixWord, cur);
+        }
         }
         cur.remove(0);
       }
@@ -72,10 +74,10 @@ public class Solution {
       List<String> list = new ArrayList<String>();
       for (int i = 0; i < s.length(); i++){
         for (char c = 'a'; c <= 'z'; c++){
-          Char[]array = s.toCharArray();
+          char[]array = s.toCharArray();
           array[i] = c;
           String ss = new String(array);
-          if (!ss.equals(s))
+          if (!ss.equals(s) && wordList.contains(ss))
             list.add(ss);
         }
       }

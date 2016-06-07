@@ -15,7 +15,7 @@
  */
 public class Solution {
     public ListNode detectCycle(ListNode head) {
-      if (head == null) return false;
+      if (head == null) return null;
       ListNode p1 = head;
       ListNode p2 = head;
       while(p2 != null && p2.next != null && p2.next.next != null){
@@ -23,6 +23,7 @@ public class Solution {
           p1 = p1.next;
           if (p1 == p2) break;
       }
+      if (p2 == null || p2.next == null || p2.next.next == null) return null;
       if (p1 != p2) return null;
       p1 = head;
       while(p1 != p2){

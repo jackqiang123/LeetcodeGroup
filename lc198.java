@@ -10,6 +10,7 @@
 public class Solution {
     public int rob(int[] nums) {
       int len = nums.length;
+      if (len == 0) return 0;
       if (len == 1) return nums[0];
       int max = nums[0];
       int []dp = new int[len];

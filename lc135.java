@@ -15,12 +15,12 @@ public class Solution {
         if (r[i] > r[i-1])
           c[i] = c[i-1] + 1;
       }
-      for (int i = c.length - 1; i >= 0; i--){
+      for (int i = c.length - 2; i >= 0; i--){
         if (r[i] > r[i + 1] && c[i] <= c[i+1])
           c[i] = c[i+1] + 1;
       }
       int sum = 0;
-      for (int s : sum)
+      for (int s : c)
         sum += s;
       return sum;
     }

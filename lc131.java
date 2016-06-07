@@ -24,8 +24,8 @@ public class Solution {
       }
       else {
         for (int i = start + 1; i <= s.length(); i++){
-          if (isPal(s.subString(start, i))){
-            cur.add(s.subString(start, i));
+          if (isPal(s.substring(start, i))){
+            cur.add(s.substring(start, i));
             dfs(s, i, cur);
             cur.remove(cur.size()-1);
           }

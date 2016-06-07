@@ -39,15 +39,16 @@
 public class Solution {
     public void flatten(TreeNode root) {
       if (root == null) return;
-      TreeNode lefeNode = root.left;
+      TreeNode leftNode = root.left;
       TreeNode rightNode = root.right;
       root.left = null;
-      root.right = flatten(leftNode);
-      ListNode dummy = root;
+      flatten(leftNode);
+      root.right = leftNode;
+      TreeNode dummy = root;
       while(dummy.right != null){
         dummy = dummy.right;
       }
-      dummy.right = flatten(rightNode);
-      return root;
+      flatten(rightNode);
+      dummy.right = rightNode;
     }
 }

@@ -38,7 +38,7 @@ public class Solution {
           if (!queue.isEmpty()){
             queue.add(null);
           }
-          res.add(last);
+          res.add(last.val);
         }
       }
       return res;

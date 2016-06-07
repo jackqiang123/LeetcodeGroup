@@ -18,33 +18,59 @@
 public class Solution {
     public void solve(char[][] board) {
       int h = board.length;
-      int w = board[0].lenght;
+      if (h == 0) return;
+      int w = board[0].length;
       for (int i = 0; i < h; i++){
-        for (int j = 0; j < w; j++)
-        {
-          if (i == 0 || j == 0)
-            dfs(board, i, j);
-        }
+          if(board[i][0] == 'O')
+            bfs(board, i, 0);
+          if (board[i][w-1] == 'O')
+            bfs(board, i, w - 1);
+      }
+      for (int j = 0; j < w; j++){
+        if (board[0][j] == 'O')
+            bfs(board, 0, j);
+        if (board[h-1][j] == 'O')
+            bfs(board, h - 1, j);
       }
       for (int i = 0; i < h; i++){
         for (int j = 0; j < w; j++){
-          if (board[i][j] == '。')
+          if (board[i][j] == '.')
             board[i][j] = 'O';
-          else if (board[i][j] == 'X')
+          else if (board[i][j] == 'O')
             board[i][j] = 'X';
         }
       }
     }
 
-    private void dfs(char [][]board, int i, int j){
-      if (i < 0 || i >= board.length || j < 0 || j >= board[0].length || board[i][j] != 'O')
-        return;
-      else {
-        board[i][j] = '.';
-        dfs(board, i - 1, j);
-        dfs(board, i + 1, j);
-        dfs(board, i, j - 1);
-        dfs(board, i, j + 1);
+    private void bfs(char [][]board, int i, int j){
+      if (board[i][j] != 'O') return;
+      int h = board.length; int w = board[0].length;
+      Stack<Cell> queue = new Stack();
+      queue.add(new Cell(i, j));
+      while(!queue.isEmpty()){
+        Cell c = queue.pop();
+        board[c.x][c.y] = '.';
+        if (c.x - 1 >= 0 && board[c.x - 1][c.y] == 'O'){
+          queue.push(new Cell(c.x - 1, c.y));
         }
+        if (c.x + 1 < h && board[c.x + 1][c.y] == 'O'){
+          queue.push(new Cell(c.x + 1, c.y));
+        }
+        if (c.y - 1 >= 0 && board[c.x][c.y - 1] == 'O'){
+          queue.push(new Cell(c.x, c.y - 1));
+        }
+        if (c.y + 1 < w && board[c.x][c.y + 1] == 'O'){
+          queue.push(new Cell(c.x, c.y + 1));
+        }
+      }
+    }
+
+    class Cell{
+      int x;
+      int y;
+      public Cell(int x, int y){
+        this.x = x;
+        this.y = y;
+      }
     }
 }

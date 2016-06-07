@@ -18,7 +18,7 @@
  * }
  */
 public class Solution {
-    private TreeNode cur;
+    private ListNode cur;
     public TreeNode sortedListToBST(ListNode head) {
       if (head == null) return null;
       ListNode dummy = new ListNode(0);
@@ -29,11 +29,11 @@ public class Solution {
         dummy = dummy.next;
       }
       cur = head;
-      return helper((0 , len - 1);
+      return helper(0, len - 1);
     }
 
     private TreeNode helper(int lo, int hi){
-      if (lo > hi ||| cur == null) return null;
+      if (lo > hi || cur == null) return null;
       else if (lo == hi) {
         int val = cur.val;
         cur = cur.next;

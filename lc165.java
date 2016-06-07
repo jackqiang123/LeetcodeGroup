@@ -10,16 +10,28 @@
 // 0.1 < 1.1 < 1.2 < 13.37
 public class Solution {
     public int compareVersion(String version1, String version2) {
-      String[]v1 = version1.split(".");
-      String[]v2 = version2.split(".");
+      String[]v1 = version1.split("\\.");
+      String[]v2 = version2.split("\\.");
       for (int i = 0; i < Math.min(v2.length, v1.length); i++){
         int cur1 = Integer.parseInt(v1[i]);
         int cur2 = Integer.parseInt(v2[i]);
         if (cur1 < cur2) return -1;
         else if (cur1 > cur2) return 1;
       }
-      if (v1.length < v2.length)  return -1;
-      else if (v1.length > v2.length) return 1;
+      if (v1.length < v2.length)  {
+          for (int i = v1.length; i < v2.length; i++)
+          {
+              if (Integer.parseInt(v2[i]) != 0) return -1;
+          }
+          return 0;
+      }
+      else if (v1.length > v2.length) {
+          for (int i = v2.length; i < v1.length; i++)
+          {
+              if (Integer.parseInt(v1[i]) != 0) return 1;
+          }
+          return 0;
+      }
       return 0;
     }
 }

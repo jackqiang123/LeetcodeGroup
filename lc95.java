@@ -27,7 +27,9 @@ public class Solution {
       if (end < start) return res;
       for (int mid = start; mid <= end; mid++){
         List<TreeNode> left = helper(start, mid - 1);
+        if(left.size() == 0) left.add(null);
         List<TreeNode> right = helper(mid + 1, end);
+        if (right.size() == 0) right.add(null);
         for (TreeNode leftroot : left){
           for (TreeNode rightroot : right){
             TreeNode root = new TreeNode(mid);

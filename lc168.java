@@ -17,7 +17,7 @@ public class Solution {
       while(n != 0){
         n--;
         int cur = n%26;
-        char c = 'A' + cur;
+        char c = (char)('A' + cur);
         sb.insert(0, c);
         n = n/26;
       }

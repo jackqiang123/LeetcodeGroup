@@ -7,19 +7,14 @@
 // (ie, you must sell the stock before you buy again)
 public class Solution {
     public int maxProfit(int[] prices) {
-      int res = 0;
-      for (int i = 1; i < prices.length; i++){
-        res = Math.max(res, helper(prices, 0, i) + helper(prices, i + 1, prices.length -1));
+      int buy1 = Integer.MIN_VALUE; int buy2 = Integer.MIN_VALUE;
+      int sell1 = 0; int sell2 = 0;
+      for (int p : prices){
+        buy1 = Math.max(buy1, -p);
+        sell1 = Math.max(sell1, buy1 + p);
+        buy2 = Math.max(buy2, sell1 - p);
+        sell2 = Math.max(sell2, buy2 + p);
       }
-      return res;
-    }
-    private int helper(int []p, int start, int end){
-      int res = 0;
-      int lo = p[start];
-      for (int i = start; i <= end; i++){
-        res = Math.max(res, p[i] - lo);
-        lo = Math.min(lo, p[i]);
-      }
-      return res;
+      return sell2;
     }
 }

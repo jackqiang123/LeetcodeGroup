@@ -8,36 +8,31 @@
 //
 // A solution is ["cats and dog", "cat sand dog"].
 public class Solution {
-    List<String> res;
     public List<String> wordBreak(String s, Set<String> wordDict) {
-      res = new ArrayList<String>();
-      dfs(s, 0, wordDict, new ArrayList<String>());
-      return res;
+        return dfs(s, wordDict, new HashMap<String, List<String>>());
     }
-    private void dfs(String s, int start, Set<String> wordDict, ArrayList<String> cur){
-      if (start == s.length()){
-        res.add(getResult(cur));
+    private List<String> dfs(String s, Set<String> wordDict, HashMap<String, List<String>> cache){
+      if (cache.get(s) != null){
+        return cache.get(s);
       }
       else{
-        for (int i = start; i < s.length(); i++){
-          String curString = s.subString(start, i + 1);
+        List<String> res = new ArrayList();
+        for (int i = 0; i < s.length(); i++){
+          String curString = s.substring(0, i + 1);
           if (wordDict.contains(curString)){
-            cur.add(curString);
-            dfs(s, i + 1, wordDict, cur);
-            cur.remove(cur.size()-1);
+            List<String> previous = dfs(s.substring(i+1), wordDict, cache);
+            if (previous.size() != 0)
+            {   for (String previousWord : previous){
+                 res.add(curString + " " + previousWord);
+                }
+            }
+            else if (i+1==s.length()){
+                res.add(curString);
+            }
           }
         }
+        cache.put(s, res);
+        return res;
       }
-    }
-
-    private String getResult(List<String> list){
-      if (list.size() == 0) return "";
-      StringBuilder sb = new StringBuilder();
-      for (int i = 0; i < list.size(); i++){
-        sb.append(list.get(i));
-        if (i != list.size() - 1)
-          sb.append(" ");
-      }
-      return sb.toString();
     }
 }

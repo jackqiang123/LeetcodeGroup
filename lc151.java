@@ -18,7 +18,8 @@
 // Reduce them to a single space in the reversed string.
 public class Solution {
     public String reverseWords(String s) {
-      String[]sSplit = s.split("\\s+")
+      s = s.trim();
+      String[]sSplit = s.split("\\s+");
       reverse(sSplit);
       StringBuilder res = new StringBuilder();
       for (int i = 0; i < sSplit.length; i++)

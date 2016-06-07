@@ -14,8 +14,8 @@ public class Solution {
       int minValue = Integer.MAX_VALUE;
       for (int i = 0; i < cost.length; i++)
       {
-        cost[i] += gas[i];
-        sum += cost[i];
+        gas[i] -= cost[i];
+        sum += gas[i];
         if (sum < minValue){
           minValue = sum;
           minIndex = i;

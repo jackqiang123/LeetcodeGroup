@@ -24,7 +24,7 @@ public class Solution {
     private int sum;
     public int maxPathSum(TreeNode root) {
       sum = Integer.MIN_VALUE;
-      int leftPathsum = partialSum(root.left)
+      int leftPathsum = partialSum(root.left);
       int rightPathsum = partialSum(root.right);
       return Math.max(sum, root.val + Math.max(leftPathsum, 0) + Math.max(rightPathsum, 0));
     }

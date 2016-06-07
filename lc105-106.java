@@ -20,8 +20,8 @@ public class Solution {
     private TreeNode helper(int []pre, int rootindex, int []ind, int start, int end){
       if (end < start) return null;
       if (end == start) return new TreeNode(ind[start]);
-      TreeNode root = new TreeNode(pre[start]);
-      int rootIndexInOrder = valueToIndex.get(pre[start]);
+      TreeNode root = new TreeNode(pre[rootindex]);
+      int mid = valueToIndex.get(pre[rootindex]);
       root.left = helper(pre, rootindex + 1, ind, start, mid - 1);
       int leftlen = mid - start;
       root.right = helper(pre, rootindex + 1 + leftlen, ind, mid + 1, end);

@@ -19,9 +19,9 @@ public class Solution {
         if (s.charAt(i) == s.charAt(j)){
           i++; j--;
         }
-        else if (Character.isLetter(s.charAt(i)) || Character.isDigit(s.charAt(i)))
+        else if (!(Character.isLetter(s.charAt(i)) || Character.isDigit(s.charAt(i))))
           i++;
-        else if (Character.isLetter(s.charAt(j)) || Character.isDigit(s.charAt(j)))
+        else if (!(Character.isLetter(s.charAt(j)) || Character.isDigit(s.charAt(j))))
           j--;
         else return false;
       }

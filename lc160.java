@@ -47,7 +47,7 @@ public class Solution {
       if (alen < blen) {p2 = headA; p1 = headB;}
       else {p1 = headA; p2 = headB;}
       int diff = Math.abs(alen - blen);
-      while(diff > 0){
+      while(diff-- > 0){
         p1 = p1.next;
       }
       while(p1 != p2){

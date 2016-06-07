@@ -31,6 +31,7 @@ public class Solution {
     public int numIslands(char[][] grid) {
       res = 0;
       int h = grid.length;
+      if (h == 0) return 0;
       int w = grid[0].length;
       visit = new boolean[h][w];
       for (int i = 0; i < h; i++){

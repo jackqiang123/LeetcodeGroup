@@ -26,7 +26,7 @@ public class Solution {
       while(root != null)
       {
         stack.push(root);
-        res.insert(0, root.val);
+        res.add(0, root.val);
         root = root.right;
       }
       while(!stack.isEmpty()){
@@ -35,7 +35,7 @@ public class Solution {
         while(cur != null)
         {
           stack.push(cur);
-          res.insert(0, cur.val);
+          res.add(0, cur.val);
           cur = cur.right;
         }
       }

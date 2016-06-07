@@ -31,12 +31,12 @@ public class Solution {
           max = Math.max(max, map.get(Double.MAX_VALUE));
         }
         else {
-          double slope = (cur.y - basePoint.y)/(cur.x - basePoint.x)*1.0;
+          double slope = (cur.y - basePoint.y)*1.0/(cur.x - basePoint.x)*1.0;
           map.put(slope, map.get(slope) == null ? 1 : map.get(slope) + 1);
           max = Math.max(max, map.get(slope));
         }
 
       }
-      return max + samePoint;
+      return 1 + max + samePoint;
     }
 }

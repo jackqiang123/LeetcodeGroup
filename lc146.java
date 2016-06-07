@@ -18,7 +18,7 @@ public class LRUCache {
         private DoubleLinkedListNode head;
         private DoubleLinkedListNode tail;
         private HashMap<Integer, DoubleLinkedListNode> map;
-        public DoubleLinkedListNode(){
+        public DoubleLinkedList(){
           head = null;
           tail = null;
           map = new HashMap<Integer, DoubleLinkedListNode>();
@@ -31,7 +31,7 @@ public class LRUCache {
           return cur.val;
         }
 
-        public int set(int key, int val){
+        public void set(int key, int val){
           if (get(key) != -1){
             map.get(key).val = val;
             moveToHead(map.get(key));
@@ -39,14 +39,21 @@ public class LRUCache {
           else{
             DoubleLinkedListNode cur = new DoubleLinkedListNode(key, val);
             map.put(key, cur);
-            moveToHead(cur);
+            if (head == null){
+              head = cur; tail = cur;
+            }
+            else {
+              cur.next = head;
+              head.prev = cur;
+              head = cur;
+            }
           }
         }
 
         public void moveToHead(DoubleLinkedListNode node){
           if (head == node)  return;
-          ListNode prevNode = node.prev;
-          ListNode nextNode = node.next;
+          DoubleLinkedListNode prevNode = node.prev;
+          DoubleLinkedListNode nextNode = node.next;
           prevNode.next = nextNode;
           if (node == tail){
             tail = prevNode;
@@ -68,7 +75,7 @@ public class LRUCache {
           }
           else{
             map.remove(tail.val);
-            Listnode last = tail.prev;
+            DoubleLinkedListNode last = tail.prev;
             last.next = null;
             tail = last;
           }

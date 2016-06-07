@@ -30,7 +30,7 @@ public class Solution {
     public List<List<Integer>> pathSum(TreeNode root, int sum) {
       res = new ArrayList<List<Integer>>();
       if (root == null) return res;
-      dfs(new ArrayList<Integer>, sum, root);
+      dfs(new ArrayList<Integer>(), sum, root);
       return res;
     }
     private void dfs(List<Integer> cur, int target, TreeNode root){
@@ -43,8 +43,10 @@ public class Solution {
       }
       else{
         cur.add(root.val);
-        dfs(cur, target - root.val, root.left);
-        dfs(cur, target - root.val, root.right);
+        if (root.left != null)
+            dfs(cur, target - root.val, root.left);
+        if (root.right != null)
+            dfs(cur, target - root.val, root.right);
         cur.remove(cur.size()-1);
       }
     }

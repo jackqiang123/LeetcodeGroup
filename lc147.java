@@ -12,24 +12,24 @@ public class Solution {
     public ListNode insertionSortList(ListNode head) {
       ListNode dummy = new ListNode(0);
       dummy.next = head;
-      ListNode res = dummy;
+      ListNode res = new ListNode(0);
       while(head != null){
-        ListNode p = dummy;
-        while(p.next.val < head.val){
-          p = p.next;
-        }
         ListNode temp = head.next;
-        if (p.next != head)
-        {
-            ListNode tail = p;
-            while(tail.next != head)
-              tail = tail.next;
-            tail.next = null;
-            head.next = p.next;
+        head.next = null;
+        ListNode p = res;
+        while(p.next != null){
+            if (p.next.val < head.val){
+              p = p.next;
+            }
+            else {
+              head.next = p.next;
+              p.next = head;
+              break;
+            }
         }
-        else
-          head.next = null;
-        p.next = head;
+        if (p.next == null){
+          p.next = head;
+        }
         head = temp;
       }
       return res.next;
