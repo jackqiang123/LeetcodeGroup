@@ -23,8 +23,8 @@
 public class Solution {
     public int kthSmallest(TreeNode root, int k) {
       int leftSize = size(root.left);
-      if(leftSize + 1== k) return root;
-      else if (leftSize + 1 < k) return kthSmallest(root.left, k);
+      if(leftSize + 1== k) return root.val;
+      else if (leftSize + 1 > k) return kthSmallest(root.left, k);
       return kthSmallest(root.right, k - leftSize - 1);
     }
     private int size(TreeNode root){

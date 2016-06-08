@@ -4,7 +4,7 @@
 // For example, given the range [5, 7], you should return 4.
 public class Solution {
     public int rangeBitwiseAnd(int m, int n) {
-      int bit = 0；
+      int bit = 0;
       while((n >> bit) != 0)
         bit++;
       if (bit == 0) return 0;

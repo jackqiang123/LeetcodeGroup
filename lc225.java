@@ -35,7 +35,7 @@ class MyStack {
       for (int i = 0; i < size - 1; i++)
         queue.add(queue.remove());
       int res = queue.peek();
-      queue.add(queue.remove())
+      queue.add(queue.remove());
       return res;
     }
 

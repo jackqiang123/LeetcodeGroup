@@ -24,12 +24,12 @@ public class Solution {
     public List<String> findWords(char[][] board, String[] words) {
       dict = new Trie();
       res = new ArrayList<String>();
-      visit = new boolean[h][w];
-      for (String s : words){
-        dict.add(s);
-      }
       int h = board.length;
       int w = board[0].length;
+      visit = new boolean[h][w];
+      for (String s : words){
+        dict.insert(s);
+      }
       for (int i = 0; i < h; i++){
         for (int j = 0; j < w; j++)
         {
@@ -42,18 +42,19 @@ public class Solution {
     private void dfs(char[][]board, int i, int j, StringBuilder cur){
       if (i < 0 || i >= board.length || j < 0 || j >= board[0].length || visit[i][j])
         return;
-      if (!dict.startsWith(cur.toString()))  return;
-      if (dict.search(cur.toString())) {
-        res.add(cur.toString());
-      }
       cur.append(board[i][j]);
-      visit[i][j] = true;
-      dfs(board, i - 1, j, cur);
-      dfs(board, i + 1, j, cur);
-      dfs(board, i, j - 1, cur);
-      dfs(board, i, j + 1, cur);
-      cur.remove(cur.length() - 1);
-      visit[i][j] = false;
+      if (dict.startsWith(cur.toString())) {
+          if (dict.search(cur.toString())) {
+            if (!res.contains(cur.toString())) res.add(cur.toString());
+          }
+          visit[i][j] = true;
+          dfs(board, i - 1, j, cur);
+          dfs(board, i + 1, j, cur);
+          dfs(board, i, j - 1, cur);
+          dfs(board, i, j + 1, cur);
+          visit[i][j] = false;
+      }
+      cur.deleteCharAt(cur.length() - 1);
     }
 }
 

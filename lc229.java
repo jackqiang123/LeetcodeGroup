@@ -8,6 +8,7 @@ public class Solution {
     public List<Integer> majorityElement(int[] nums) {
       int c1 = 0;
       int c2 = 0;
+      if (nums.length == 0) return new ArrayList<Integer>();
       int n1 = nums[0]+1;
       int n2 = nums[0]-1;
       for (int i : nums){
@@ -33,6 +34,10 @@ public class Solution {
       return res;
     }
     private boolean isMajor(int []nums, int n){
-
+      int c = 0;
+      for (int i : nums){
+        if (i == n) c++;
+      }
+      return c > nums.length/3;
     }
 }

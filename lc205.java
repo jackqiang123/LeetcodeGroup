@@ -22,7 +22,7 @@ public class Solution {
       Map<Character, Character> map = new HashMap();
       for (int i = 0; i < slen; i++){
         char sc = s.charAt(i);
-        char tc = t.charAt(j);
+        char tc = t.charAt(i);
         if (map.get(sc) != null)
         {
           if (map.get(sc) != tc)

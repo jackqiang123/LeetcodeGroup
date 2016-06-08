@@ -24,7 +24,6 @@ public class Solution {
         n = getNext(n);
         if (n == 1) return true;
       }
-      return false;
     }
 
     private int getNext(int n){

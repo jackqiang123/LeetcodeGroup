@@ -94,9 +94,9 @@ class Trie {
           {
             if (search(root.next[i], word, start + 1))
               return true;
-            return false;
           }
         }
+        return false;
       }
     }
 }

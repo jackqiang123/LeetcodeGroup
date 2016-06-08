@@ -29,8 +29,8 @@ public class Solution {
       if (root == null) return root;
       TreeNode left = root.left;
       TreeNode right = root.right;
-      root.left = invertTree(root.right);
-      root.right = invertTree(root.left);
+      root.left = invertTree(right);
+      root.right = invertTree(left);
       return root;
     }
 }

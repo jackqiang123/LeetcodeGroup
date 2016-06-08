@@ -3,8 +3,6 @@
 // and the difference between i and j is at most k.
 public class Solution {
     public boolean containsNearbyDuplicate(int[] nums, int k) {
-      int i = 0;
-      int j = 0;
       Map<Integer, Integer> map = new HashMap();
       for (int i = 0; i < nums.length; i++){
         if (map.get(nums[i]) != null){
