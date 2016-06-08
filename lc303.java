@@ -17,7 +17,7 @@ public class NumArray {
     }
 
     public int sumRange(int i, int j) {
-      return dp[i + 1] - dp[j];
+      return dp[j + 1] - dp[i];
     }
 }
 

@@ -34,7 +34,7 @@ public class Solution {
           }
           else {
             if (count == 3){
-              board[i][j] = 12
+              board[i][j] = 12;
             }
           }
         }
@@ -44,13 +44,14 @@ public class Solution {
         for (int j = 0; j < w; j++){
           if (board[i][j] == 11 || board[i][j] == 12)
             board[i][j] = 1;
-          else board[i][j] = 0;
+          else if (board[i][j] == 10)
+            board[i][j] = 0;
         }
       }
     }
 
     private int findnb(int [][]board, int i, int j){
-      return check(board, i - 1, j) + check(board, i + 1, j) + check(board, i, j-1) + check(board, i, j+1);
+      return check(board, i - 1, j) + check(board, i + 1, j) + check(board, i, j-1) + check(board, i, j+1) +check(board, i - 1, j - 1) + check(board, i + 1, j + 1) + check(board, i + 1, j-1) + check(board, i - 1, j+1);
     }
 
     private int check(int [][]board, int i, int j){

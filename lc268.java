@@ -19,9 +19,14 @@ public class Solution {
           else i++;
         }
       }
-      for (int i = 0; i < nums.length; i++){
+      for (i = 0; i < nums.length; i++){
         if (nums[i] != i) return i;
       }
       return nums.length;
+    }
+    private void swap(int[]nums, int i, int j){
+        int t = nums[i];
+        nums[i] = nums[j];
+        nums[j] = t;
     }
 }

@@ -18,6 +18,7 @@ public class Solution {
     public int[] maxSlidingWindow(int[] nums, int k) {
       int len = nums.length;
       k = Math.min(len, k);
+      if (k <= 0 || len == 0) return new int[0];
       int []res = new int[len - k + 1];
       int index = 0;
       PriorityQueue<Integer> pq = new PriorityQueue<Integer>(k, new Comparator<Integer>(){

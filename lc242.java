@@ -13,7 +13,7 @@ public class Solution {
     public boolean isAnagram(String s, String t) {
       int slen = s.length();
       if (slen != t.length()) return false;
-      int [] charArray = new char[26];
+      char [] charArray = new char[26];
       for (int i = 0; i < slen; i++){
         charArray[s.charAt(i)-'a']++;
         charArray[t.charAt(i)-'a']--;

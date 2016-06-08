@@ -19,13 +19,16 @@ class MyQueue {
     // Removes the element from in front of queue.
     public void pop() {
       peek();
-      return stack1.pop();
+      stack1.pop();
     }
 
     // Get the front element.
     public int peek() {
+      if (stack1.isEmpty()){
       while(!stack2.isEmpty())
         stack1.push(stack2.pop());
+      }
+      return stack1.peek();
     }
 
     // Return whether the queue is empty.

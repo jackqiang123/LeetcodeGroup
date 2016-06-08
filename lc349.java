@@ -19,7 +19,7 @@ public class Solution {
             set.remove(n);
         }
       }
-      int [] list = new int[res.length];
+      int [] list = new int[res.size()];
       int pos = 0;
       for (int i : res)
         list[pos++] = i;

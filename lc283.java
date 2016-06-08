@@ -16,7 +16,7 @@ public class Solution {
         }
         else j++;
       }
+          for (; i < nums.length; i++)
+              nums[i] = 0;
     }
-    for (; i < nums.length; i++)
-      nums[i] = 0;
 }

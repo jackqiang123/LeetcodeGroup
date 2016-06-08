@@ -15,14 +15,14 @@ public class Solution {
       for (int n : nums)
         bit ^= n;
       int count = 0;
-      while((bit >> count)) & 1 == 0){
+      while((((bit >> count)) & 1) == 0){
         count++;
       }
       int xor = (1 << count);
       int left = 0;
       int right = 0;
       for (int i : nums){
-        if (xor & i == 0){
+        if ((xor & i) == 0){
           left ^= i;
         }
         else right ^= i;
