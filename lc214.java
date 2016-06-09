@@ -8,25 +8,27 @@
 // Given "abcd", return "dcbabcd".
 public class Solution {
     public String shortestPalindrome(String s) {
-      StringBuilder sb;
-      int len = s.length();
-      for (int i = 0; i < len; i++){
-        sb = new StringBuilder(s);
-        for (int j = 0; j <= i; j++){
-          sb.insert(len, s.charAt(j));
+      if (s.length() == 0) return s;
+      String ss = s + " " + (new StringBuilder(s).reverse()) + "#";
+      int[]next = getNextArray(ss);
+      int lengthofSP = next[next.length - 1];
+      return (new StringBuilder(s.substring(lengthofSP)).reverse()) + s;
+    }
+    private int[]getNextArray(String s){
+      int []next = new int[s.length()];
+      int j = 0;
+      int k = -1;
+      next[0] = -1;
+      while(j < s.length() - 1){
+        if (k == -1 || s.charAt(j) == s.charAt(k)){
+          next[++j] = ++k;
         }
-        if (isPalindrome(sb))
-          return sb.toString();
+        else {
+          k = next[k];
+        }
       }
-      return null;
+      return next;
     }
 
-    private boolean isPalindrome(StringBuilder s){
-      int i = 0; int j = s.length() - 1;
-      while(i < j){
-        if (s.charAt(i) != s.charAt(j)) return false;
-        i++; j--;
-      }
-      return true;
-    }
+
 }

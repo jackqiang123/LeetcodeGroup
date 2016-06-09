@@ -8,6 +8,7 @@
 // fit in the 32-bit signed integer range.
 public class Solution {
     public int maximumGap(int[] nums) {
+      if (nums.length <= 1) return 0;
       int max = Integer.MIN_VALUE;
       int min = Integer.MAX_VALUE;
       for (int i : nums)
@@ -16,8 +17,9 @@ public class Solution {
         min = Math.min(min,i);
       }
       int gap = max - min;
+      if (gap == 0) return 0;
       int bucketSize = gap/nums.length;
-      if (bucketSize == 0) return 0;
+      if (bucketSize == 0) bucketSize = 1;
       int numofBucket = gap/bucketSize + 1;
       int maxArray[] = new int[numofBucket];
       Arrays.fill(maxArray, Integer.MIN_VALUE);

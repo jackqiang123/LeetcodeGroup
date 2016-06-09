@@ -31,10 +31,9 @@ public class Solution {
         }
         else{
           missing++;
-          canBuilder *= 2;
+          wantBuilder *= 2;
         }
       }
-      if (nums.length == 0 || nums[0] != 1) missing++;
       return missing;
     }
 }

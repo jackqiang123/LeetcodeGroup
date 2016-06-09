@@ -36,32 +36,38 @@ public class LRUCache {
             map.get(key).val = val;
             moveToHead(map.get(key));
           }
-          else{
+          else{// create a new node
             DoubleLinkedListNode cur = new DoubleLinkedListNode(key, val);
             map.put(key, cur);
-            if (head == null){
+            if (head == null){// if the current list is empty, put it there by marking head
               head = cur; tail = cur;
             }
-            else {
-              cur.next = head;
+            else { // if not, put it at the head.
               head.prev = cur;
+              cur.next = head;
               head = cur;
             }
           }
         }
 
-        public void moveToHead(DoubleLinkedListNode node){
-          if (head == node)  return;
+        public void moveToHead(DoubleLinkedListNode node){// a newly visit node
+          if (head == node)  return; // if this node is already head do nothing.
+          if (tail == node) { // there are at least two nodes, while node is tail
+                DoubleLinkedListNode prevNode = node.prev;
+                tail = prevNode;
+                prevNode.next = null;
+                node.prev = null;
+                head.prev = node;
+                node.next = head;
+                head = node;
+                return;
+          }
+          // if node is not head or tail
           DoubleLinkedListNode prevNode = node.prev;
           DoubleLinkedListNode nextNode = node.next;
           prevNode.next = nextNode;
-          if (node == tail){
-            tail = prevNode;
-          }
-          else{
-            nextNode.prev = prevNode;
-          }
-          node.prev = null;
+          nextNode.prev = prevNode;
+          head.prev = node;
           node.next = head;
           head = node;
         }
@@ -69,12 +75,12 @@ public class LRUCache {
         public void removetail(){
           if (tail == null) return;
           if (head == tail){
-            map.remove(tail.val);
+            map.remove(tail.key);
             head = null;
             tail = null;
           }
-          else{
-            map.remove(tail.val);
+          else{// tail is differnet from head
+            map.remove(tail.key);
             DoubleLinkedListNode last = tail.prev;
             last.next = null;
             tail = last;

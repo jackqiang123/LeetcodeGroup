@@ -17,7 +17,8 @@ public class Solution {
       int res = s.length() - 1 - last;
       while(!stack.isEmpty()){
         int cur = stack.pop();
-        res = Math.max(res, last - cur - 1);
+        if (last - cur - 1 > res)
+          res = last - cur - 1;
         last = cur;
       }
       return Math.max(res, last);

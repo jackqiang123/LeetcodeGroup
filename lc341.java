@@ -29,11 +29,11 @@
  *     public List<NestedInteger> getList();
  * }
  */
- public class NestedIterator implements Iterator<Integer> {
+public class NestedIterator implements Iterator<Integer> {
      // a good idea will be just push the thing that we want to visit in reverse order
-     Stack<NestedInteger> stack;
+     Stack<NestedInteger> stack = new Stack<>();
      public NestedIterator(List<NestedInteger> nestedList) {
-       stack = new Stack();
+       stack = new Stack<NestedInteger>();
        for (int i = nestedList.size() - 1; i >= 0; i--){
          stack.push(nestedList.get(i));
        }

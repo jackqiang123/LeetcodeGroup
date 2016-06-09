@@ -32,17 +32,17 @@ public class Solution {
       return max;
     }
 
-    // making an monotoically increasing seqeu
-    
+
     public int lengthOfLISNlogN(int[] nums) {
-      //dp can lead to a O(n^2) algorithm
       int []dp = new int[nums.length];
+      // dp is storing the smallest number to have consectuive seq length i +1
       int len = 0;
       for (int x : nums){
-        int i = Arrays.binarySearch(nums, 0, len, x);
+        int i = Arrays.binarySearch(dp, 0, len, x);
         if (i < 0) i = -(i+1);
-        dp[i] = x;
-        if (i == len) len++;
+        dp[i] = x; // note that x is the largest index elements, we can either replace previous existing x, or insert x into it
+                    //x is the just larger than dp[i]
+        if (i == len) len++; // if i is larger than all elemetns, then increase the range
       }
       return len;
     }
