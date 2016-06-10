@@ -43,6 +43,7 @@ public class Solution {
         dp[i] = x; // note that x is the largest index elements, we can either replace previous existing x, or insert x into it
                     //x is the just larger than dp[i]
         if (i == len) len++; // if i is larger than all elemetns, then increase the range
+        // since the inserting proccess is by binary search, then dp is sorted.
       }
       return len;
     }
