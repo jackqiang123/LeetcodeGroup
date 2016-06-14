@@ -7,7 +7,7 @@ public class Solution{
 	public int lengthOfLongestSubstringTwoDistinct(String s) {
     int len = s.length();
 		if (len <= 2) return len;
-		int i = 0; int j = 0;
+		int i = 0;
 		int max = 2;
 		HashMap<Character, Integer> map = new HashMap<Character, Integer>();
 		// last position to appear the char c

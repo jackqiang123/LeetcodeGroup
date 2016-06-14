@@ -26,7 +26,7 @@ public class Solution {
           diff++;
         else i++;
       }
-      return diff == 1;
+      return diff <= 1;
     }
 
     private boolean modifyOneTrue(String s, String t){

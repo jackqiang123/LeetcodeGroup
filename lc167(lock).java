@@ -9,7 +9,7 @@
 public class Solution{
   public int[] twoSum(int []nums, int target){
     int lo = 0;
-    int hi = nums.length;
+    int hi = nums.length - 1;
     while(lo < hi){
       if (nums[lo] + nums[hi] == target){ // you may conisder overflow issue here
         int []res = {lo+1, hi+1};//one based index

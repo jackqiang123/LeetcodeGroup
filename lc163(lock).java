@@ -5,7 +5,7 @@ public class Solution {
 	      List<String> res = new ArrayList<String>();
 	      for (int i = 0; i <= nums.length; i++){
 	    	  int lower = i == 0 ? start : nums[i-1]+1;
-	    	  int higher = i == nums.length ? start : nums[i-1] - 1;
+	    	  int higher = i == nums.length ? end : nums[i] - 1;
 	    	  addMissing(lower, higher, res);
 	      }
 	      return res;

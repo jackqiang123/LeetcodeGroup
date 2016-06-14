@@ -14,20 +14,26 @@ public class Solution extends Reader4 {
       * @param n   Maximum number of characters to read
       * @return    The number of characters read
       */
-     private int size = 0; // this is a pointer to pick up the last reading pos
+     private int bufPointer = 4;
+     private int resPointer = 0;
+     private int maxBuffer = 0;
      private char [] buf4 = new char[4];
+     private boolean eof = false;
      public int read(char[] buf, int n) {
-       boolean eof = false;
-       char[] buf4 = new char[4];
-       int beginSize = size;
-       while(!eof){
-         int curSize = read4(buf4);
-         if (curSize != 4)
-           eof = true;
-         for (int i = 0; i < curSize && (size - beginSize) < n; i++)
-           buf[size++] = buf4[i];
-       }
-       return size - beginSize;
-       }
+         resPointer = 0;
+         int beginSize = resPointer;
+         while(!(eof == true && bufPointer >= maxBuffer)){
+           if (bufPointer == 4){
+             maxBuffer = read4(buf4);
+             if (maxBuffer < 4) eof = true;
+             bufPointer = 0;
+           }
+           while(bufPointer < maxBuffer && n > 0){
+             buf[resPointer++] = buf4[bufPointer++];
+             n--;
+           }
+           if (n == 0) break;
+         }
+         return resPointer - beginSize;
      }
 }

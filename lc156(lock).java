@@ -19,17 +19,14 @@
 public class Solution{
   // this question is more like a recrusion way of reverse a linkedlist.
   // first reverse the left child. then make the left left point to right, left right point to parent.
-  public TreeNode UpsideDownBinaryTree(TreeNode root) {
-    if (root == null) return root;
-    TreeNode parent = root; TreeNode left = root.left; TreeNode right = root.right;
-    if (left != null)
-    {
-        TreeNode newRoot = UpsideDownBinaryTree(left);
-        left.left = right;
-        left.right = parent;
-        return newRoot;
-    }
-      return root; // this case means root is a leaf node, thus do nothing.
+  public TreeNode upsideDownBinaryTree(TreeNode root) {
+    if (root == null || root.left == null)  return root;
+    TreeNode newRoot = upsideDownBinaryTree(root.left);
+    root.left.left = root.right;
+    root.left.right = root;
+    root.left = null;
+    root.right = null;
+    return newRoot;
   }
   }
 }
