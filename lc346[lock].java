@@ -9,7 +9,7 @@
 public class MovingAverage {
     int max;
     int sumWin;
-    Deque data;
+    Queue<Integer> data;
     public MovingAverage(int size) {
       this.max = size;
       this.data = new LinkedList();
@@ -18,12 +18,12 @@ public class MovingAverage {
 
     public double next(int val) {
       if (data.size() < max){
-        deque.addLast(val);
+        data.add(val);
         sumWin += val;
       }
       else{
-        int last = deque.removeFirst();
-        deque.addLast(val);
+        int last = data.remove();
+        data.add(val);
         sumWin = sumWin + val - last;
       }
       return sumWin*1.0/data.size();
