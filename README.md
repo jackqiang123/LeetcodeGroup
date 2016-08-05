@@ -1,2 +1,2 @@
-# LeetcodeGroup
-This group is used to record codes for leetcode. Working on self branch.
+# LeetcodeGroup - MS branch
+This branch contains lc question for microsoft.
