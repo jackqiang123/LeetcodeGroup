@@ -4,6 +4,16 @@
 // You may assume that nums1 has enough space (size that is greater or equal to m + n) to hold additional elements from nums2. The number of elements initialized in nums1 and nums2 are m and n respectively.
 public class Solution {
     public void merge(int[] nums1, int m, int[] nums2, int n) {
-
+      int len = m + n - 1;
+      int p1 = m - 1; int p2 = n - 1;
+      while(len >= 0){
+        if (p1 >= 0 && p2 >= 0){
+          if (nums1[p1] > nums2[p2])
+              nums1[len--] = nums1[p1--];
+          else nums1[len--] = nums2[p2--];
+        }
+        else if (p1 >= 0) break;
+        else nums1[len--] = nums2[p2--];
+      }
     }
 }
